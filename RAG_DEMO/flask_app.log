@@ -1,0 +1,824 @@
+2024-09-09 00:59:34,194 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 00:59:34,194 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 00:59:39,169 - INFO - User received message: Hello
+2024-09-09 00:59:39,190 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 174, in chat
+    response = text_generator(input_text, max_length=200, num_return_sequences=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 262, in __call__
+    return super().__call__(text_inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1257, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1264, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1164, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 351, in _forward
+    generated_sequence = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1874, in generate
+    self._validate_generated_length(generation_config, input_ids_length, has_default_max_length)
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1266, in _validate_generated_length
+    raise ValueError(
+ValueError: Input length of input_ids is 200, but `max_length` is set to 200. This can lead to unexpected behavior. You should consider increasing `max_length` or, better yet, setting `max_new_tokens`.
+2024-09-09 00:59:39,197 - INFO - 127.0.0.1 - - [09/Sep/2024 00:59:39] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:01:52,700 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:01:52,700 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:01:57,000 - INFO - User received message: Hello
+2024-09-09 01:01:57,001 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 163, in chat
+    similarities = cosine_similarity(query_embedding.reshape, document_embeddings)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\utils\_param_validation.py", line 203, in wrapper
+    validate_parameter_constraints(
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\utils\_param_validation.py", line 95, in validate_parameter_constraints
+    raise InvalidParameterError(
+sklearn.utils._param_validation.InvalidParameterError: The 'X' parameter of cosine_similarity must be an array-like or a sparse matrix. Got <built-in method reshape of numpy.ndarray object at 0x0000024C93C73210> instead.
+2024-09-09 01:01:57,006 - INFO - 127.0.0.1 - - [09/Sep/2024 01:01:57] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:02:44,540 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:02:44,540 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:02:48,105 - INFO - User received message: Hello
+2024-09-09 01:02:48,108 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 163, in chat
+    similarities = cosine_similarity(query_embedding, document_embeddings)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\utils\_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\metrics\pairwise.py", line 1679, in cosine_similarity
+    X, Y = check_pairwise_arrays(X, Y)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\metrics\pairwise.py", line 185, in check_pairwise_arrays
+    X = check_array(
+        ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\utils\validation.py", line 1050, in check_array
+    raise ValueError(msg)
+ValueError: Expected 2D array, got 1D array instead:
+array=[-0.03323825 -0.01984239  0.02191344 -0.00267077 -0.01799556 -0.09013089
+  0.0839216   0.10754423 -0.06513168 -0.04231473 -0.00088594 -0.09250268
+ -0.04497823  0.04833123  0.02610906  0.03980039  0.02665568 -0.019335
+ -0.00618415 -0.17662872  0.01567535  0.04092155  0.03361971 -0.06733508
+  0.04944655  0.01181225 -0.04559949  0.06764434 -0.05624753 -0.0361577
+  0.08596294  0.03778993  0.02106527 -0.00782213 -0.0114819   0.03226718
+  0.03724029 -0.01450079  0.01157831 -0.11666563 -0.03414196 -0.03084875
+ -0.02430488  0.0351816   0.02883455 -0.01842102 -0.03299751  0.03803564
+ -0.01073903  0.05891972 -0.00212505  0.00668499 -0.01846254 -0.00369277
+ -0.04636196 -0.04097097  0.008306   -0.01875442 -0.03861065  0.06229425
+  0.00295593  0.06958722  0.10144583  0.00919917 -0.12147087  0.03332141
+ -0.0144239   0.05162565 -0.02108268  0.05819326 -0.0176264   0.00274401
+  0.05347235  0.01727737  0.10093813  0.02504529  0.01916408 -0.07187358
+ -0.00399678 -0.00673067  0.01805801 -0.00045856 -0.01451066  0.03435443
+  0.01548852 -0.01648646 -0.04577493  0.02819415  0.00468464  0.03573379
+  0.03766298  0.01881859  0.08848822  0.03005537  0.07649795  0.01596271
+  0.0614925  -0.02512075  0.10139924 -0.04133122].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2024-09-09 01:02:48,117 - INFO - 127.0.0.1 - - [09/Sep/2024 01:02:48] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:03:57,898 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:03:57,898 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:04:03,250 - INFO - User received message: Hello
+2024-09-09 01:04:03,251 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 163, in chat
+    similarities = cosine_similarity(query_embedding.reshape(-1, 1), document_embeddings)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\utils\_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\metrics\pairwise.py", line 1679, in cosine_similarity
+    X, Y = check_pairwise_arrays(X, Y)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\sklearn\metrics\pairwise.py", line 214, in check_pairwise_arrays
+    raise ValueError(
+ValueError: Incompatible dimension for X and Y matrices: X.shape[1] == 1 while Y.shape[1] == 100
+2024-09-09 01:04:03,258 - INFO - 127.0.0.1 - - [09/Sep/2024 01:04:03] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:06:06,749 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:06:06,749 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:06:10,879 - INFO - User received message: Hello
+2024-09-09 01:06:10,902 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 176, in chat
+    response = text_generator(input_text, max_length=200, num_return_sequences=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 262, in __call__
+    return super().__call__(text_inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1257, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1264, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1164, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 351, in _forward
+    generated_sequence = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1874, in generate
+    self._validate_generated_length(generation_config, input_ids_length, has_default_max_length)
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1266, in _validate_generated_length
+    raise ValueError(
+ValueError: Input length of input_ids is 200, but `max_length` is set to 200. This can lead to unexpected behavior. You should consider increasing `max_length` or, better yet, setting `max_new_tokens`.
+2024-09-09 01:06:10,912 - INFO - 127.0.0.1 - - [09/Sep/2024 01:06:10] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:08:42,761 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:08:42,761 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:08:45,737 - INFO - User received message: Hello
+2024-09-09 01:08:45,777 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 176, in chat
+    response = text_generator(input_text, max_new_tokens=50, num_return_sequences=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 262, in __call__
+    return super().__call__(text_inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1257, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1264, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1164, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 351, in _forward
+    generated_sequence = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2024, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2982, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1315, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1028, in forward
+    position_embeds = self.wpe(position_ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\sparse.py", line 164, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\functional.py", line 2267, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index out of range in self
+2024-09-09 01:08:45,794 - INFO - 127.0.0.1 - - [09/Sep/2024 01:08:45] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:12:47,502 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:12:47,502 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:12:51,577 - INFO - User received message: Hello
+2024-09-09 01:12:51,622 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 177, in chat
+    response = text_generator(input_text, max_new_tokens=50, num_return_sequences=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 262, in __call__
+    return super().__call__(text_inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1257, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1264, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1164, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 351, in _forward
+    generated_sequence = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2024, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2982, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1315, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1028, in forward
+    position_embeds = self.wpe(position_ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\sparse.py", line 164, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\functional.py", line 2267, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index out of range in self
+2024-09-09 01:12:51,635 - INFO - 127.0.0.1 - - [09/Sep/2024 01:12:51] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:19:01,997 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:19:01,999 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:19:06,213 - INFO - User received message: Hello
+2024-09-09 01:19:06,251 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 192, in chat
+    response = text_generator(input_text, max_new_tokens=50, num_return_sequences=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 262, in __call__
+    return super().__call__(text_inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1257, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1264, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1164, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 351, in _forward
+    generated_sequence = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2024, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2982, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1315, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1028, in forward
+    position_embeds = self.wpe(position_ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\sparse.py", line 164, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\functional.py", line 2267, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index out of range in self
+2024-09-09 01:19:06,264 - INFO - 127.0.0.1 - - [09/Sep/2024 01:19:06] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:22:21,531 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:22:21,532 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:22:26,754 - INFO - User received message: Hello
+2024-09-09 01:22:26,755 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 162, in chat
+    query_embedding = get_embedding(user_message)
+                      ^^^^^^^^^^^^^
+NameError: name 'get_embedding' is not defined
+2024-09-09 01:22:26,760 - INFO - 127.0.0.1 - - [09/Sep/2024 01:22:26] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:23:18,265 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:23:18,265 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:23:20,387 - INFO - User received message: Hello
+2024-09-09 01:23:20,427 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 196, in chat
+    response = text_generator(input_text, max_new_tokens=50, num_return_sequences=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 262, in __call__
+    return super().__call__(text_inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1257, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1264, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1164, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 351, in _forward
+    generated_sequence = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2024, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2982, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1315, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1028, in forward
+    position_embeds = self.wpe(position_ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\sparse.py", line 164, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\functional.py", line 2267, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index out of range in self
+2024-09-09 01:23:20,441 - INFO - 127.0.0.1 - - [09/Sep/2024 01:23:20] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:31:06,770 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:31:06,770 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:31:47,927 - INFO - User received message: Hello
+2024-09-09 01:31:55,102 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 202, in chat
+    response = text_generator(truncated_input_text, max_new_tokens=50, num_return_sequences=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 262, in __call__
+    return super().__call__(text_inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1257, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1264, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\base.py", line 1164, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\pipelines\text_generation.py", line 351, in _forward
+    generated_sequence = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2024, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2982, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1315, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1028, in forward
+    position_embeds = self.wpe(position_ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\sparse.py", line 164, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\functional.py", line 2267, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index out of range in self
+2024-09-09 01:31:55,120 - INFO - 127.0.0.1 - - [09/Sep/2024 01:31:55] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:35:28,477 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:35:28,477 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:35:40,099 - INFO - User received message: Hello
+2024-09-09 01:35:40,157 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 200, in chat
+    outputs = model.generate(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1874, in generate
+    self._validate_generated_length(generation_config, input_ids_length, has_default_max_length)
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1266, in _validate_generated_length
+    raise ValueError(
+ValueError: Input length of input_ids is 1024, but `max_length` is set to 1024. This can lead to unexpected behavior. You should consider increasing `max_length` or, better yet, setting `max_new_tokens`.
+2024-09-09 01:35:40,165 - INFO - 127.0.0.1 - - [09/Sep/2024 01:35:40] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:38:54,091 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:38:54,091 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:38:58,695 - INFO - User received message: Hello
+2024-09-09 01:39:03,240 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 196, in chat
+    outputs = model.generate(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2024, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2982, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1315, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1028, in forward
+    position_embeds = self.wpe(position_ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\sparse.py", line 164, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\functional.py", line 2267, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index out of range in self
+2024-09-09 01:39:03,260 - INFO - 127.0.0.1 - - [09/Sep/2024 01:39:03] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:40:26,434 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:40:26,434 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:40:32,031 - INFO - User received message: Hello
+2024-09-09 01:40:36,499 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 201, in chat
+    outputs = model.generate(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2024, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 2982, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1315, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 1028, in forward
+    position_embeds = self.wpe(position_ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\modules\sparse.py", line 164, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\nn\functional.py", line 2267, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index out of range in self
+2024-09-09 01:40:36,522 - INFO - 127.0.0.1 - - [09/Sep/2024 01:40:36] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:42:25,357 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:42:25,357 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:42:40,674 - INFO - User received message: Hello
+2024-09-09 01:42:40,726 - INFO - 127.0.0.1 - - [09/Sep/2024 01:42:40] "POST /chat HTTP/1.1" 200 -
+2024-09-09 01:44:47,715 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:44:47,715 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:45:42,760 - INFO - User received message: Hel
+2024-09-09 01:45:42,761 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 183, in chat
+    query_embedding = get_embedding(user_message)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 163, in get_embedding
+    raise ValueError("None of the words in the query are in the vocabulary.")
+ValueError: None of the words in the query are in the vocabulary.
+2024-09-09 01:45:42,765 - INFO - 127.0.0.1 - - [09/Sep/2024 01:45:42] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:46:44,319 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:46:44,319 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:46:47,736 - INFO - User received message: Hel
+2024-09-09 01:46:47,737 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 183, in chat
+    query_embedding = get_embedding(user_message)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 163, in get_embedding
+    raise ValueError("None of the words in the query are in the vocabulary.")
+ValueError: None of the words in the query are in the vocabulary.
+2024-09-09 01:46:47,743 - INFO - 127.0.0.1 - - [09/Sep/2024 01:46:47] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 01:47:45,894 - INFO - User received message: Hello
+2024-09-09 01:47:45,946 - INFO - 127.0.0.1 - - [09/Sep/2024 01:47:45] "POST /chat HTTP/1.1" 200 -
+2024-09-09 01:48:45,082 - INFO - User received message: it
+2024-09-09 01:48:45,121 - INFO - 127.0.0.1 - - [09/Sep/2024 01:48:45] "POST /chat HTTP/1.1" 200 -
+2024-09-09 01:51:41,923 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:51:41,923 - INFO - [33mPress CTRL+C to quit[0m
