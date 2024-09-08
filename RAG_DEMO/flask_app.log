@@ -822,3 +822,359 @@ ValueError: None of the words in the query are in the vocabulary.
 2024-09-09 01:51:41,923 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 2024-09-09 01:51:41,923 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:52:24,869 - INFO - User received message: it
+2024-09-09 01:52:24,923 - INFO - 127.0.0.1 - - [09/Sep/2024 01:52:24] "POST /chat HTTP/1.1" 200 -
+2024-09-09 01:53:53,294 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:53:53,294 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:53:57,679 - INFO - User received message: it
+2024-09-09 01:53:57,723 - INFO - 127.0.0.1 - - [09/Sep/2024 01:53:57] "POST /chat HTTP/1.1" 200 -
+2024-09-09 01:56:34,711 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 01:56:34,711 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 01:56:43,825 - INFO - User received message: it
+2024-09-09 01:56:43,874 - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\GitHub\RAG\RAG_Demo\RAG_DEMO\Main.py", line 204, in chat
+    outputs = model.generate(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1688, in generate
+    generation_config, model_kwargs = self._prepare_generation_config(generation_config, **kwargs)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\utils.py", line 1391, in _prepare_generation_config
+    model_kwargs = generation_config.update(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\configuration_utils.py", line 1207, in update
+    self.validate()
+  File "C:\Users\DELL\AppData\Local\pypoetry\Cache\virtualenvs\rag-demo-7r4MT-O8-py3.11\Lib\site-packages\transformers\generation\configuration_utils.py", line 544, in validate
+    raise ValueError(f"`max_new_tokens` must be greater than 0, but is {self.max_new_tokens}.")
+ValueError: `max_new_tokens` must be greater than 0, but is 0.
+2024-09-09 01:56:43,881 - INFO - 127.0.0.1 - - [09/Sep/2024 01:56:43] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-09-09 02:01:58,877 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-09 02:01:58,877 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-09 02:02:03,020 - INFO - User received message: it
+2024-09-09 02:02:37,894 - INFO - Generated response: this film is extraordinarily horrendous and i'm not going to waste any more words on it. 
+ an affluent horse breeder's past comes up to haunt him ; an ages old cover-up and blackmail comes back to haunt him at the hands of one of his accomplices. 
+that's pretty much the essence of the movie and i have to say that it becomes quite boring at times and is very slow. 
+that aside the story was well presented and probably quite close and representative of its source. 
+the acting in particular i found very good, the character development was also quite interesting but alas the story simply did not hold my interest enough for me to get into the movie. 
+a few things about the story didn't sit very well with me for example the original scam and cover-up heavily involved the character played by sharon stone, yet in the end her character played a relatively small role and it seems she should have been utilized more to further the story along better. 
+on the flip side the character played by catherine keener i fouled my expectations and i was disappointed with the movie. 
+the story was very well told and i was very happy with the movie. 
+the story was well told and i was very happy with the movie.      nd to be very interesting and i thought that it was developed very well and helped the story a lot. 
+the character's aside this movie had some interesting merits but in the end it lacked in story and pacing. 
+as far as the acting and casting for this movie is concerned i have to say that the choices of nick nolte and jeff bridges were great as well as that of catherine keener. 
+all these people acted their parts admirably, as for the part that sharon stone played, she played it well but the part was not utilized enough. 
+the directing for this movie is something that i have to comment on because for once in a long while you see a director actually add a very distinctive flavor to a movie, this is one of those occasions. 
+matthew warchus in my opinion added an interesting touch and spin to the movie and i think he tackled a touch subject ( i myself wouldn't be able to look at horseracing and make a movie out of it ). 
+there is a certain flavor about this movie and i think that the direction of the moviemaking was very well done and i think that the story was well done and i think that the characters were well done. 
+the movie was very well done and i think that the story was well done and i think that the characters were wellie is the reason for this. 
+the one flaw that i do have to comment on is the pacing, the subject matter in my opinion wasn't interesting enough on its own to have this kind of flavoring and directorial touch about it. 
+i certainly hope that the director makes more movies as this does show promise even if i myself don't like it. 
+all in all i found this movie boring and very slow, the acting was good but the story just didn't evolve enough and wasn't captivating enough to make simpatico an enjoyable movie to watch. 
+although there is much going for the movie i didn't find it good even though i see the merits and style used and can compliment the movie on them. 
+i wouldn't recommend this movie to anyone but if you are a horse fanatic or a racing fanatic then you will most likely enjoy this movie. 
+ i was going to see ram shrasta on the big screen last night, but before that i stopped into my video store to rent some movies. 
+luckily, my video guy was in the middle or recording ram shrasta! 
+i knew i was going to see ram shrasta on the big screen but i didn't know if i would be able to get it on the big screen. 
+i was going to see ram shrasta on the big screen but i didn't knowt was going to be a bad print with only half-faces and poor sound quality, but i couldn't help myself... 
+i got it. 
+well, after watching it ( it indeed was a bad print ) i was glad i didn't dish out $7 to waste three hours of my time sitting in a bad theatre watching a bad movie. 
+this movie really sucks. 
+it had so many inconsistencies it was driving me crazy!! 
+for example, how can jackie shroff grow two feet of hair in just three or four days? 
+jackie shroff looked really stupid with his steven seagal ponytail. 
+the songs are bad, the acting is bad ( especially deepti bhatnagar's ), and the direction is the worst of all. 
+the comedy scenes with jagdish and johnny lever just made me want to throw up. 
+i didn't even finish the movie... 
+i couldn't take it anymore. 
+note : but if anyone out there liked aatish ( by the same director ), i guess you'd like this movie. 
+it's practically the same except that sanjay dutt is replaced with jackie shroff. 
+aditya panscholi is the sidekick agai, and the other two are the main characters. 
+the movie is so bad that i can't even remember what i was watching. 
+i was so sad that i had to watch it again. 
+i was so sad that in. 
+ ( i was going to give it a zero, but i personally like jackie shroff, so i loosened up a little. 
+he looked fresh, wore good clothes ( as always ), and his performance, even though it wasn't his best, was the only saving grace of the movie ) 
+ mr. bean, a bumbling security guard from england is sent to la to help with the grandiose homecoming of a masterpiece american painting. 
+the first two words should have said enough to let you know what occurs during bean's trip to la, but if they didn't look out because you are in for a rather interesting if not odd ride. 
+heck depending on your humor you might end up laughing through the whole flick. 
+either way look out america bean is coming. 
+well, what can really be said about this movie, there is very little discernible plot. 
+that much is not hard to grapple with for it is a slapstick comedy. 
+it achieves that goal rather admirably, but because it is that, the plot is just screaming for help. 
+the whole premise that the movie is based  on is a bit of a joke, but it is a good one. 
+the movie is a bit of a joke, but it is a good one. 
+the movie is a bit of a joke, but it is a goodon is to say the least flawed. 
+the movie had its funny moments but there was no real story line other than something that could be thought up on a whim and carried through and in many causes ad-libbed as you went. 
+don't go into this movie expecting and theatrical masterpiece. 
+but if this form of humor floats your boat then you will truly enjoy this movie, even if you don't like slapstick style humor you will end up laughing because something's are just so stupid. 
+the movie goes out and accomplishes what it aims, or so it seems. 
+now when you look at the acting in this movie you have to think about two things, first was there any real acting and how hard is it to act in the slapstick manner. 
+well, there was no real acting in this movie but some of the slapstick wasn't the easiest i am sure. 
+i have to concede that mr. atkinson's acting in this movie is well done. 
+although the role isn't too demanding the slapstick is. 
+i think that the character could have had a bit more dialogue, it would have been more interesting to see how he would have acted in the slapstick style. 
+but the acting in this movie is not as good as the slapstick style. 
+i think that the slapstick style is a bit too much for have added quite a bit to the overall effect of the movie. 
+now the rest of the actors in the movie, bad acting and poor casting. 
+i think that the role opposite bean could have been better, just seemed wrong for the movie. 
+a different actor might have done a better job of it but i wont presume that wasn't what was trying to be achieved. 
+one thing that i must say, simply to get if off my chest is that i think transferring a sitcom to tv usually produces rather disastrous results. 
+tv shows should do just that stay on tv, it will probably save some producers from getting ulcers. 
+i can only think of a couple examples of tv going to the big screen effectively, the best known of those would have to be star trek. 
+bean seriously fails to accomplish anything close to what that series gone movie achieved. 
+now another thing that i have to state again is this movie has narrowed its target audience fairly tightly. 
+the form of humor in this movie will not be liked by most people, these people will tinker with the script and the characters to their own liking. 
+this movie is not going to be a hit, it will be a hit for the rest of the world. 
+this movie is going to be a hit for the rest ofhink like i did that this movie is stupid and pointless. 
+but if you like the tv show you might actually like this movie. 
+but to be on the safe side i am opting to recommend you save your money and not go to see this movie. 
+there are many movies that are truly worth seeing unlike this one. 
+ i think we should, as responsible citizens, all get together and stop jim carrey from making another movie. 
+he's changing the cinema as we know it--and for the worst. 
+i would willingly rewatch batman and robin rather then again sit through this miserable collection of filmic moments--prologues, epilogues, etc. the premise : a lawyer can't lie for a day. 
+ho, ho. 
+normally a movie made from this premise would be terrible--mr. 
+carrey suceeds in making it unwatchable. 
+i laughed once--and i was laughing at the sight of everyone else laughing. 
+grinding doesn't begin to describe. 
+it pounds on your head so forcefully and so unstoppably that, if you are a normal person, you leave feeling sick. 
+when i saw this movie i was so sick i had to go to the hospital. 
+i was so sick i had to go to the hospital. 
+i was so sick i had to go to the hospital. 
+i was so sick it's not trying to be funny, it's trying to be melodramatic--but it's just annoying, stupid and sappy. 
+at best. 
+this movie is intended to make people laugh, yes, not to be voted best picture of all time by sight and sound. 
+but, it fails on every possible level. 
+it fails to be funny. 
+it fails to be insightful. 
+it fails to be suspensful. 
+it fails to be fun. 
+they should pay people to see it. 
+it suceeds on one level--it makes me want to get down on the ground and start thanking orson welles, for having lived. 
+if you go in with the intention of coming out alive, please make sure that you are overly fond of boob, fart, pimple and fat jokes--otherwise you will go insane. 
+yes, literally insane. 
+stark, raving mad. 
+it is boring, stupid, melodramatic and in the end ugly. 
+i reccemond it strongly. 
+to ed wood. 
+Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hel Hel Hello it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it
+2024-09-09 02:02:37,906 - INFO - 127.0.0.1 - - [09/Sep/2024 02:02:37] "POST /chat HTTP/1.1" 200 -
+2024-09-09 02:03:06,957 - INFO - User received message: expectations
+2024-09-09 02:04:19,774 - INFO - Generated response: susan granger's review of " american outlaws " ( warner bros. ) 
+thomas edison's " the great train robbery " ( 1903 ) was the first western ever made and " jesse james under the black flag " ( 1923 ) first introduced the outlaw folk hero. 
+now, more than 20 similarly-themed pictures later, jesse james and his notorious gang of outlaws ride again in a banal mtv spin on an american legend. 
+the story begins as jesse ( charasmatic colin farrell ) and his brother frank ( gabriel macht ), cole and scott younger ( scott caan, will mccormack ) and trusty comanche tom ( nathaniel arcand ), after four years of fighting for the rebs in the civil war, return to liberty, missouri - only to discover union troops are occupying their hometown. 
+and an avaricious east coast railroad baron, thaddeus rains ( harris yulin ), is forcing farmers to sell their land at less than true value, aided by allan pinkerton ( timothy dalton ) and his infamous detectives who, back then, were just thugs who provided security. 
+the story ends with a gang of outlaws riding a train through the woods of the city of New York, where they are met by a group of outlaws who are trying to steal their land. 
+the story ends with a gang 
+but when ma james ( kathy bates ) becomes one of their victims, jesse and the rest of the guys ( gregory smith, ty o'neal, joe stevens ) form the james-younger gang to wreak revenge by attacking the railroad's supply lines, sabotaging track and robbing the banks where the payroll is kept. 
+plus there's romance - between jesse and a spunky hometown gal, lee mimms ( ali larter ). 
+working from a politically-correct, clich? -drenched, sanitized and revisionist screenplay by roderick taylor and john rodgers, director les mayfield keeps the action fast-paced and goes for lightweight laughs when he can. 
+the choppy editing hurts but russell boyd's cinematography, luke reichle's designer duds and trevor rabin's music lend authenticity. 
+on the granger movie gauge of 1 to 10, " american outlaws " is a galloping, formulaic 3. 
+it's the wild west re-visited as a date movie. 
+ long time buddies and neil diamond tribute band members wayne ( steve zahn, " happy, texas " ) and j. d. ( jack black, " james " ) are the only ones who can't get over the fact that they're the only ones who can't get over the fact that they're the only ones who can't get over the fact that they're the only ones who can't high fidelity " ) watch in horror as third mate darren silverman ( jason biggs, " american pie " ) disappears under the thumb of his new fiance judith, ( amanda peet, " the whole nine yards " ) a controlling psychiatrist. 
+they're doubly troubled when the return of darren's 'one and only love' sandy perkins ( amanda detmer, " final destination " ) returns to their home town but doesn't cause a ripple in darren's devotion to judith. 
+there's only one thing wayne and j. d. can think of doing - they kidnap judith and fake her death in " saving silverman. " 
+written by hank nelken and greg depaul after seeing a friend engaged to the wrong woman, " saving silverman " is directed by 'hit comedy director' dennis dugan of such films as " big daddy, " " brain donors " and " problem child. " 
+it's a dismal, third-rate farrelly brothers rip off that attempts to milk humor from such inspired bits of whimsy as having darren's love interest come from a family of circus freaks and be about to become a nun. 
+goddess of the underworld, darren's love interest, is a very good actress and a very good actress. 
+she's a very good actress and a very good actress. 
+she's a very good actress and a very goodross out gags include a visualization of darren getting butt cheek implants. 
+ " saving silverman " is almost saved by stars zahn and black. 
+these two are so comically talented they can take bad material and still deliver the goods. 
+they're in " animal house " mode while the rest of the film trawls along and comes up empty. 
+jason biggs can attribute his entire career to the luck of having been cast in the smash hit " american pie. " 
+peet shows some physical moves but no flair for comedy here while detmer slaps a brave, sweet smile onto her face and soldiers through. 
+r. lee ermey ( " full metal jacket " ) is one note in an embarrassing performance as a psychopathic ex-football coach. 
+neil diamond appears at the film's climax as himself and miraculously enlivens the proceedings by belting out some of his old standards. 
+ disney's 35th animated feature-- a retooling of the olympian legend crossed with, well, the superman story-- is surprisingly soft at the center. 
+great wit, great art, and  a great cast of characters. 
+the film is a great example of how to make a film that is not only funny but also a great one. 
+the film is a great example of how to make a film that is not onlya great villain ( james woods as hades, lord of the underworld and local lounge act ) can't quite stifle the yawns induced by a bland hero, his colorfully monotonous sidekick ( danny devito as the satyrical trainer phil ), and a largely unremarkable soundtrack. 
+ ( none of the alan menken/david zippel tunes are particular- ly noteworthy. 
+some lack lyrical snap. 
+others need more memorable melodies. 
+boring ballads we expect, but boring production numbers, too? ) 
+so, hercules is a bit of a long sit, but you won't stay bored. 
+the highlights include a nifty round of animated action ( herc battling a cgi hydra ), a steady stream of anachronisms ( " somebody call ix-i-i " ) and pop references ( " let's get ready to rumble! " ) a la aladdin, and several long-overdue jabs at the mouse's marketing and merchandising depart- ments. 
+while not as rock-solid as hunchback, it's a still a new world of improvement over pocohontas. 
+directed by ron clements and john musker, with voice credits including the aforementioned " The Last of Us ", " The Last of Us 2 ", " The Last of Us 3 ", " The Last of Us 4 ", " The Last of Us 5 ", " The Last of Us 6 ", " tate donovan, susan egan, bob goldthwait, matt frewer, samantha eggar, paul shaffer, and, as lighting bolt zeus, rip torn, who's having a very good summer, also appearing in trial and error and men in black. 
+ the rapid-fire formula that worked so well in airplane!, the " police squad! " 
+television series, top secret!, three naked gun films, and two hot shots! 
+movies has finally reached a desperate dead-end with spy hard. 
+even ezio gregio's the silence of the hams is arguably funnier than this over-extended spy- and action-movie spoof. 
+leslie nielsen stars as secret agent wd-40, who returns from retirement to battle his old nemesis, general rancor ( a cackling andy griffith ). 
+the jokes fly in every direction and with hardly a hint of restraint, timing, or tact. 
+most the movie is comprised of recycled airplane and naked gun gags, recreated movie sequences, and soggy star cameos. 
+yeah, maybe we * do * need ray charles driving an l. a. bus bound for a speed bump, but diplo is a good guy, and he's a good guy. 
+the movie is a little too long, but it's still a good movie. 
+the movie is a little too long, but it's still a good movie.d mr. t, hulk hogan, and dr. joyce brothers also have to appear in the same movie? 
+leslie nielsen plays it straight with his usual dopey flair. 
+there is something oddly inspiring about the sight of nielsen wearing a nun's habit, even the resulting sister act spoof is silly. 
+as are the bits directly lifted from home alone, pulp fiction, true lies, etc. etc. ( adolescent males might enjoy this mess, tho. 
+the butt shots, breast peeks, penis pokes, flatulence gags, and related innuendo are right up beavis and butthead's alley. ) 
+beyond the hilarious title sequence with " weird " al yankovich performing the theme song, spy hard is barely the stock that it's printed on. 
+my recommendation : duck in while you're waiting for another movie to start. 
+stay long enough to see the camera dart inside of weird al's nostril and then leave. 
+you won't miss a thing. 
+ susan granger's review of " osmosis jones " ( warner bros. ) 
+if the farrelly brothers taught anatomy & physiology in school, no one would be able to tell the difference between a penis and a vagina. 
+the brothers are so good at their craft that they can't even tell the difference between a penis and a vagina. 
+the brothers are so good at their craft one would cut ever class. 
+this hip, live action/animation story begins as a monkey snatches a hard-boiled egg from frank, a zookeeper ( bill murray ), who grabs it back, drops it, then gobbles up the contaminated morsel, explaining, " if it hits and ground and you pick it up within 10 seconds, you can eat it. " 
+like " fantastic voyage " ( 1966 ), the pseudo-science animation then takes over when his body's immune system contacts traffic control as an ingested virus hits the digestive system : " be on the alert for illegal organisms! " 
+eager to right " a stomach evacuation mistake " he once made, a cocky, clever, courageous white blood cell ( chris rock ) declares, " this is a crime scene! " 
+and teams up with a conscientious " phi beta capsule " 12-hour cold remedy called drixenol ( david hyde pierce ) to chase down and destroy the deadly " red death " virus ( laurence fishburne ) that's determined to take frank down in 48 hours, beating ebola and e. coli to a medical record. 
+watch ou " a " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "t for mucus mudslides, chaos in cerebellum hall and the detritus from booger dam ( runny nose ), along with comic turns from molly shannon and chris elliot, plus the voices of william shatner and brandy norwood. 
+peter and bobby farrelly, along with writer mark hyman and animation directors piet kroon and tom sito, have turned their penchant for gross-out comedy, encompassing flatulence, festering sores and " popping a pimple without a permit, " into a funny, farrelly-funny family film. 
+on the granger movie gauge of 1 to 10, " osmosis jones " is a wildly imaginative, original, explosive 7. 
+and perhaps, as they're laughing, kids will learn where to find their uvula, along with nuggets about nutrition and hygiene. 
+Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hel Hel Hello it it it it it this film is extraordinarily horrendous and i'm not going to waste any more words on it. 
+ an affluent horse breeder's past cuddly and a young man's love for the world's most famous horse, the film is a tale of two men who are both very good at their jobs and very good at their lives. 
+and a young man's love for the worldomes up to haunt him ; an ages old cover-up and blackmail comes back to haunt him at the hands of one of his accomplices. 
+that's pretty much the essence of the movie and i have to say that it becomes quite boring at times and is very slow. 
+that aside the story was well presented and probably quite close and representative of its source. 
+the acting in particular i found very good, the character development was also quite interesting but alas the story simply did not hold my interest enough for me to get into the movie. 
+a few things about the story didn't sit very well with me for example the original scam and cover-up heavily involved the character played by sharon stone, yet in the end her character played a relatively small role and it seems she should have been utilized more to further the story along better. 
+on the flip side the character played by catherine keener i fouled my expectations and i was disappointed with the movie. 
+the story was very well told and i was very happy with the movie. 
+the stalker is a very interesting character and i think the movie is a good one to watch. 
+the story was well told and i was very happy with the movie. 
+the story was well told and i was very happy with the movie.ory was well told and i was very happy with the movie.      nd to be very interesting and i thought that it was developed very well and helped the story a lot. 
+the character's aside this movie had some interesting merits but in the end it lacked in story and pacing. 
+as far as the acting and casting for this movie is concerned i have to say that the choices of nick nolte and jeff bridges were great as well as that of catherine keener. 
+all these people acted their parts admirably, as for the part that sharon stone played, she played it well but the part was not utilized enough. 
+the directing for this movie is something that i have to comment on because for once in a long while you see a director actually add a very distinctive flavor to a movie, this is one of those occasions. 
+matthew warchus in my opinion added an interesting touch and spin to the movie and i think he tackled a touch subject ( i myself wouldn't be able to look at horseracing and make a movie out of it ). 
+there is a certain flavor about taylor that i really enjoyed watching and i think that is what made this movie so special. 
+the story was very well told and i was very happy with the movie.     nd to be very interesting and i thought that ithis movie and i think that the direction of the moviemaking was very well done and i think that the story was well done and i think that the characters were well done. 
+the movie was very well done and i think that the story was well done and i think that the characters were wellie is the reason for this. 
+the one flaw that i do have to comment on is the pacing, the subject matter in my opinion wasn't interesting enough on its own to have this kind of flavoring and directorial touch about it. 
+i certainly hope that the director makes more movies as this does show promise even if i myself don't like it. 
+all in all i found this movie boring and very slow, the acting was good but the story just didn't evolve enough and wasn't captivating enough to make simpatico an enjoyable movie to watch. 
+although there is much going for the movie i didn't find it good even though i see the merits and style used and can compliment the movie on them. 
+i wouldn't recommend this movie to anyone but if you are a horse fanatic or a fan of the horse movies i would recommend this movie to you. 
+i think that the direction of the moviemaking was very well done and i think that the story was well done and i think that the characters were well done.  a racing fanatic then you will most likely enjoy this movie. 
+ i was going to see ram shrasta on the big screen last night, but before that i stopped into my video store to rent some movies. 
+luckily, my video guy was in the middle or recording ram shrasta! 
+i knew i was going to see ram shrasta on the big screen but i didn't know if i would be able to get it on the big screen. 
+i was going to see ram shrasta on the big screen but i didn't knowt was going to be a bad print with only half-faces and poor sound quality, but i couldn't help myself... 
+i got it. 
+well, after watching it ( it indeed was a bad print ) i was glad i didn't dish out $7 to waste three hours of my time sitting in a bad theatre watching a bad movie. 
+this movie really sucks. 
+it had so many inconsistencies it was driving me crazy!! 
+for example, how can jackie shroff grow two feet of hair in just three or four days? 
+jackie shroff looked really stupid with his steven seagal ponytail. 
+the songs are bad, the acting is bad ( especially deejay ) and the music is bad ( i think ) 
+the movie is so bad that it's almost like it's a movie about a girl who's been raped by a man who's been raped by a man who's been raped by apti bhatnagar's ), and the direction is the worst of all. 
+the comedy scenes with jagdish and johnny lever just made me want to throw up. 
+i didn't even finish the movie... 
+i couldn't take it anymore. 
+note : but if anyone out there liked aatish ( by the same director ), i guess you'd like this movie. 
+it's practically the same except that sanjay dutt is replaced with jackie shroff. 
+aditya panscholi is the sidekick agai, and the other two are the main characters. 
+the movie is so bad that i can't even remember what i was watching. 
+i was so sad that i had to watch it again. 
+i was so sad that in. 
+ ( i was going to give it a zero, but i personally like jackie shroff, so i loosened up a little. 
+he looked fresh, wore good clothes ( as always ), and his performance, even though it wasn't his best, was the only saving grace of the movie ) 
+ mr. bean, a bumbling security guard from england is sent to la to help with the grandiose homecoming of a masterpiece american painting. 
+the first two words should have saith the word "brave" in the first place. 
+the second word should have saith "a man who is brave" in the first place. 
+the third word should have saith "a man who is brave" inid enough to let you know what occurs during bean's trip to la, but if they didn't look out because you are in for a rather interesting if not odd ride. 
+heck depending on your humor you might end up laughing through the whole flick. 
+either way look out america bean is coming. 
+well, what can really be said about this movie, there is very little discernible plot. 
+that much is not hard to grapple with for it is a slapstick comedy. 
+it achieves that goal rather admirably, but because it is that, the plot is just screaming for help. 
+the whole premise that the movie is based  on is a bit of a joke, but it is a good one. 
+the movie is a bit of a joke, but it is a good one. 
+the movie is a bit of a joke, but it is a goodon is to say the least flawed. 
+the movie had its funny moments but there was no real story line other than something that could be thought up on a whim and carried through and in many causes ad-libbed as you went. 
+don't go into this movie expecting and theatrical masterpiece. 
+but if this form  is to be believed, this movie is a masterpiece. 
+the movie has a lot of great moments, but it is a bit of a joke. 
+the movie has a lot of great moments, but it is a bit of aof humor floats your boat then you will truly enjoy this movie, even if you don't like slapstick style humor you will end up laughing because something's are just so stupid. 
+the movie goes out and accomplishes what it aims, or so it seems. 
+now when you look at the acting in this movie you have to think about two things, first was there any real acting and how hard is it to act in the slapstick manner. 
+well, there was no real acting in this movie but some of the slapstick wasn't the easiest i am sure. 
+i have to concede that mr. atkinson's acting in this movie is well done. 
+although the role isn't too demanding the slapstick is. 
+i think that the character could have had a bit more dialogue, it would have been more interesting to see how he would have acted in the slapstick style. 
+but the acting in this movie is not as good as the slapstick style. 
+i think that the slapstick style is a bit too much for have added quite a bit to the overall effect of the movie. 
+now the rest of the actors in the movie, bad guys, and the bad guys are all very good. 
+i think that the slapstick style is a bit too much for have added quite a bit to the overall effect of the movie. 
+i think that the slapstick style is a acting and poor casting. 
+i think that the role opposite bean could have been better, just seemed wrong for the movie. 
+a different actor might have done a better job of it but i wont presume that wasn't what was trying to be achieved. 
+one thing that i must say, simply to get if off my chest is that i think transferring a sitcom to tv usually produces rather disastrous results. 
+tv shows should do just that stay on tv, it will probably save some producers from getting ulcers. 
+i can only think of a couple examples of tv going to the big screen effectively, the best known of those would have to be star trek. 
+bean seriously fails to accomplish anything close to what that series gone movie achieved. 
+now another thing that i have to state again is this movie has narrowed its target audience fairly tightly. 
+the form of humor in this movie will not be liked by most people, these people will tinker with the script and the characters to their own liking. 
+this movie is not going to be a hit, it will be a hit for the studio. 
+i think that the role opposite bean could have been better, just seemed wrong for the movie. 
+a different actor might have done a better job of it but i wont presume that wasn't what was trying to be achieved the rest of the world. 
+this movie is going to be a hit for the rest ofhink like i did that this movie is stupid and pointless. 
+but if you like the tv show you might actually like this movie. 
+but to be on the safe side i am opting to recommend you save your money and not go to see this movie. 
+there are many movies that are truly worth seeing unlike this one. 
+ i think we should, as responsible citizens, all get together and stop jim carrey from making another movie. 
+he's changing the cinema as we know it--and for the worst. 
+i would willingly rewatch batman and robin rather then again sit through this miserable collection of filmic moments--prologues, epilogues, etc. the premise : a lawyer can't lie for a day. 
+ho, ho. 
+normally a movie made from this premise would be terrible--mr. 
+carrey suceeds in making it unwatchable. 
+i laughed once--and i was laughing at the sight of everyone else laughing. 
+grinding doesn't begin to describe. 
+it pounds on your head so forcefully and so unstoppably that, if you aint going to watch it, you might as well just watch it. 
+i'm not saying that this movie is bad--it's just that it's not good. 
+but it's not good enough. 
+i'm not sayingre a normal person, you leave feeling sick. 
+when i saw this movie i was so sick i had to go to the hospital. 
+i was so sick i had to go to the hospital. 
+i was so sick i had to go to the hospital. 
+i was so sick it's not trying to be funny, it's trying to be melodramatic--but it's just annoying, stupid and sappy. 
+at best. 
+this movie is intended to make people laugh, yes, not to be voted best picture of all time by sight and sound. 
+but, it fails on every possible level. 
+it fails to be funny. 
+it fails to be insightful. 
+it fails to be suspensful. 
+it fails to be fun. 
+they should pay people to see it. 
+it suceeds on one level--it makes me want to get down on the ground and start thanking orson welles, for having lived. 
+if you go in with the intention of coming out alive, please make sure that you are overly fond of boob, fart, pimple and fat jokes--otherwise you will go insane. 
+yes, literally insane. 
+stark, raving mad. 
+it is boring, stupid, melodramatic and in the end ugly. 
+i reccemond it strongly. 
+i reccemond it strongly. 
+i reccemond it strongly. 
+i reccemond it strongly. 
+i reccemond it strongly. 
+i reccemond it strongly. 
+i reccemond itto ed wood. 
+Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hel Hel Hello it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it expectations it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it it
+2024-09-09 02:04:19,783 - INFO - 127.0.0.1 - - [09/Sep/2024 02:04:19] "POST /chat HTTP/1.1" 200 -
