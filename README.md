@@ -1,4 +1,4 @@
-# RAG_Demo
+# RAG (with chuncking)
  
 Abstract
 Retrieval-Augmented Generation (RAG) System
