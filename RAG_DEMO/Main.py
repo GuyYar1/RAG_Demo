@@ -10,11 +10,68 @@ import numpy as np
 import re
 
 import nltk
+import pandas as pd
+import requests
+import gzip
+import io
+from nltk.corpus import movie_reviews
 
-nltk.download('movie_reviews')
 
+# Function to download and load TSV file from IMDb dataset
+def download_imdb_data(url):
+    response = requests.get(url)
+    compressed_file = io.BytesIO(response.content)
+    with gzip.GzipFile(fileobj=compressed_file) as uncompressed_file:
+        return pd.read_csv(uncompressed_file, delimiter='\t', low_memory=False)
+
+
+# Function to retrieve IMDb TV show data (2020-2023) and compare format with NLTK movie reviews
+def retrieve_imdb_data_and_compare():
+    # IMDb dataset URLs
+    basics_url = 'https://datasets.imdbws.com/title.basics.tsv.gz'
+    ratings_url = 'https://datasets.imdbws.com/title.ratings.tsv.gz'
+
+    # Download datasets
+    df_basics = download_imdb_data(basics_url)
+    df_ratings = download_imdb_data(ratings_url)
+
+    # Filter for TV shows from 2020-2023
+    df_tv_shows = df_basics[(df_basics['titleType'] == 'tvSeries') &
+                            (df_basics['startYear'].apply(lambda x: x.isdigit() and 2022 <= int(x) <= 2023))]
+
+    # Merge with ratings data
+    df_tv_shows_with_ratings = pd.merge(df_tv_shows, df_ratings, on='tconst', how='left')
+    df_tv_shows_filtered = df_tv_shows_with_ratings[
+        ['tconst', 'primaryTitle', 'startYear', 'genres', 'averageRating', 'numVotes']]
+
+    # Convert the filtered DataFrame to a format similar to NLTK movie_reviews
+    imdb_documents = df_tv_shows_filtered['primaryTitle'].tolist()
+
+    # Load the movie review dataset from NLTK
+    nltk_documents = [movie_reviews.raw(fileid) for fileid in movie_reviews.fileids()]
+
+    # Compare shapes/formats
+    print(f"IMDb TV Shows (2022-2023): {len(imdb_documents)} documents")
+    print(f"NLTK Movie Reviews: {len(nltk_documents)} documents")
+
+    if len(imdb_documents) == len(nltk_documents):
+        print("Both datasets have the same number of documents.")
+    else:
+        print("The datasets do not have the same number of documents.")
+
+    # Optionally return the IMDb documents for further use
+    return imdb_documents
+
+
+# Call the function
+documents = retrieve_imdb_data_and_compare()
+
+
+#nltk.download('movie_reviews')
 # Load the movie review dataset from NLTK
-documents = [movie_reviews.raw(fileid) for fileid in movie_reviews.fileids()]
+# documents = [movie_reviews.raw(fileid) for fileid in movie_reviews.fileids()]
+
+
 
 # Preprocess documents: Remove punctuation
 tokenized_docs = [re.sub(r'[^\w\s]', '', doc.lower()).split() for doc in documents]
