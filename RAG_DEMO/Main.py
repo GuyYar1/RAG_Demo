@@ -62,6 +62,53 @@ def retrieve_imdb_data_and_compare():
     # Optionally return the IMDb documents for further use
     return imdb_documents
 
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+
+def check_relevance(imdb_df, rag_result, threshold=0.5):
+    """
+    Check how relevant the RAG result is to the IMDb dataset.
+
+    Parameters:
+    - imdb_df (pd.DataFrame): DataFrame containing IMDb dataset with a 'description' column.
+    - rag_result (str): The result from the RAG system.
+    - threshold (float): The similarity threshold for considering a result valid.
+
+    Returns:
+    - bool: True if the similarity is above the threshold, otherwise False.
+    - float: The highest similarity score found.
+    """
+
+    # Extract descriptions from the IMDb dataset
+    descriptions = imdb_df['description'].tolist()
+
+    # Append the RAG result to the descriptions for vectorization
+    texts = descriptions + [rag_result]
+
+    # Create a TF-IDF vectorizer
+    vectorizer = TfidfVectorizer()
+
+    # Fit and transform the texts
+    tfidf_matrix = vectorizer.fit_transform(texts)
+
+    # Compute cosine similarity
+    cosine_sim = cosine_similarity(tfidf_matrix[-1], tfidf_matrix[:-1])
+
+    # Find the maximum similarity score
+    max_similarity = cosine_sim.max()
+
+    # Determine if the maximum similarity score meets the threshold
+    is_valid = max_similarity >= threshold
+
+    return is_valid, max_similarity
+
+
+
+# Start ...
+
 SelctIMDB=False
 
 if SelctIMDB==False:
@@ -132,6 +179,19 @@ MAX_LENGTH = 1024
 
 # Function to get the embedding of a query
 def get_embedding(query_text):
+    """
+    get_embedding(user_message):
+
+get_embedding is a function or method that takes the user_message and converts it into an embedding. This typically involves:
+Tokenization: Breaking down the input text into tokens.
+Transformation: Using a model (like BERT, GPT, or other embedding models) to convert these tokens into a high-dimensional vector.
+query_embedding:
+
+The resulting variable from the get_embedding function is query_embedding, which is a numerical representation (vector) of the user_message. This vector captures the meaning of the text in a format suitable for further processing by machine learning models.
+
+    :param query_text:
+    :return:
+    """
     words = query_text.lower().split()
     valid_words = [word for word in words if word in w2v_model.wv]
 
@@ -189,6 +249,14 @@ def chat():
 
     # Store bot response in the session
     session['conversation'].append({'role': 'system', 'content': generated_text})
+
+    # Example usage
+    # Assuming you have loaded IMDb dataset into imdb_df and have the RAG result as rag_result
+    imdb_df = pd.read_csv('TMDB_tv_dataset_v3.csv')  # Example file
+    rag_result = generated_text
+    is_valid, similarity_score = check_relevance(imdb_df, rag_result, threshold=0.5)
+    print(f"Is the result valid? {is_valid}")
+    print(f"Similarity score: {similarity_score}")
 
     return jsonify({'response': generated_text})
 
