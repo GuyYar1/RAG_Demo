@@ -5963,3 +5963,26 @@ the only thing i can say is that i'm not a fan of the film, but i'm not going to
 2024-09-10 19:09:36,069 - INFO - EPOCH 2 - PROGRESS: at 13.65% examples, 867908 words/s, in_qsize 7, out_qsize 0
 2024-09-10 19:09:37,090 - INFO - EPOCH 2 - PROGRESS: at 20.66% examples, 836851 words/s, in_qsize 7, out_qsize 0
 2024-09-10 19:09:38,087 - INFO - EPOCH 2 - PROGRESS: at 28.41% examples, 802283 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:39,098 - INFO - EPOCH 2 - PROGRESS: at 40.51% examples, 834719 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:40,104 - INFO - EPOCH 2 - PROGRESS: at 52.18% examples, 827043 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:41,110 - INFO - EPOCH 2 - PROGRESS: at 64.50% examples, 825386 words/s, in_qsize 8, out_qsize 0
+2024-09-10 19:09:42,104 - INFO - EPOCH 2 - PROGRESS: at 76.86% examples, 829877 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:43,129 - INFO - EPOCH 2 - PROGRESS: at 88.69% examples, 826902 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:44,103 - INFO - EPOCH 2: training on 11229709 raw words (8257542 effective words) took 10.0s, 822109 effective words/s
+2024-09-10 19:09:45,126 - INFO - EPOCH 3 - PROGRESS: at 5.15% examples, 659187 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:46,137 - INFO - EPOCH 3 - PROGRESS: at 10.77% examples, 690646 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:47,144 - INFO - EPOCH 3 - PROGRESS: at 15.65% examples, 654096 words/s, in_qsize 6, out_qsize 1
+2024-09-10 19:09:48,147 - INFO - EPOCH 3 - PROGRESS: at 21.96% examples, 658260 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:49,151 - INFO - EPOCH 3 - PROGRESS: at 31.03% examples, 689582 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:50,148 - INFO - EPOCH 3 - PROGRESS: at 41.81% examples, 710041 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:51,158 - INFO - EPOCH 3 - PROGRESS: at 54.18% examples, 729204 words/s, in_qsize 8, out_qsize 0
+2024-09-10 19:09:52,217 - INFO - EPOCH 3 - PROGRESS: at 64.39% examples, 716762 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:53,273 - INFO - EPOCH 3 - PROGRESS: at 69.30% examples, 672705 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:54,286 - INFO - EPOCH 3 - PROGRESS: at 76.42% examples, 653458 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:55,282 - INFO - EPOCH 3 - PROGRESS: at 84.66% examples, 645389 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:56,300 - INFO - EPOCH 3 - PROGRESS: at 95.50% examples, 653298 words/s, in_qsize 8, out_qsize 0
+2024-09-10 19:09:56,769 - INFO - EPOCH 3: training on 11229709 raw words (8259052 effective words) took 12.7s, 652536 effective words/s
+2024-09-10 19:09:57,773 - INFO - EPOCH 4 - PROGRESS: at 5.46% examples, 713932 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:09:58,785 - INFO - EPOCH 4 - PROGRESS: at 12.10% examples, 776299 words/s, in_qsize 8, out_qsize 0
+2024-09-10 19:09:59,795 - INFO - EPOCH 4 - PROGRESS: at 19.68% examples, 803877 words/s, in_qsize 8, out_qsize 0
+2024-09-10 19:10:00,805 - INFO - EPOCH 4 - PROGRESS: at 28.59% examples, 806733 words/s, in_qsize 7, out_qsize 0
