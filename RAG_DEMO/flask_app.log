@@ -5798,3 +5798,26 @@ the only thing i can say is that i'm not a fan of the film, but i'm not going to
 2024-09-10 18:15:09,132 - INFO - User received message: west
 2024-09-10 18:15:31,549 - INFO - Generated response: [') \nthomas edison\'s " the great train robbery " ( 1903 ) was the first western ever made and " jesse james under the black flag " ( 1923 ) first introduced the outlaw folk hero.', "\nit's the wild west re-visited as a date movie.", '\nthe encounter between the two families allows the audience to compare the eastern and western cultures as well as the ambitions of individual characters.']
 2024-09-10 18:15:31,553 - INFO - 127.0.0.1 - - [10/Sep/2024 18:15:31] "POST /chat HTTP/1.1" 200 -
+2024-09-10 18:24:24,146 - INFO - collecting all words and their counts
+2024-09-10 18:24:24,147 - INFO - PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2024-09-10 18:24:24,330 - INFO - collected 47773 word types from a corpus of 1293263 raw words and 2000 sentences
+2024-09-10 18:24:24,331 - INFO - Creating a fresh vocabulary
+2024-09-10 18:24:24,447 - INFO - Word2Vec lifecycle event {'msg': 'effective_min_count=1 retains 47773 unique words (100.00% of original 47773, drops 0)', 'datetime': '2024-09-10T18:24:24.438218', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'prepare_vocab'}
+2024-09-10 18:24:24,447 - INFO - Word2Vec lifecycle event {'msg': 'effective_min_count=1 leaves 1293263 word corpus (100.00% of original 1293263, drops 0)', 'datetime': '2024-09-10T18:24:24.447575', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'prepare_vocab'}
+2024-09-10 18:24:24,627 - INFO - deleting the raw counts dictionary of 47773 items
+2024-09-10 18:24:24,628 - INFO - sample=0.001 downsamples 41 most-common words
+2024-09-10 18:24:24,628 - INFO - Word2Vec lifecycle event {'msg': 'downsampling leaves estimated 1002682.2628386943 word corpus (77.5%% of prior 1293263)', 'datetime': '2024-09-10T18:24:24.628103', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'prepare_vocab'}
+2024-09-10 18:24:24,932 - INFO - estimated required memory for 47773 words and 100 dimensions: 62104900 bytes
+2024-09-10 18:24:24,932 - INFO - resetting layer weights
+2024-09-10 18:24:24,949 - INFO - Word2Vec lifecycle event {'update': False, 'trim_rule': 'None', 'datetime': '2024-09-10T18:24:24.949321', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'build_vocab'}
+2024-09-10 18:24:24,949 - INFO - Word2Vec lifecycle event {'msg': 'training model with 4 workers on 47773 vocabulary and 100 features, using sg=0 hs=0 sample=0.001 negative=5 window=5 shrink_windows=True', 'datetime': '2024-09-10T18:24:24.949321', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'train'}
+2024-09-10 18:24:25,488 - INFO - EPOCH 0: training on 1293263 raw words (1002725 effective words) took 0.5s, 1870112 effective words/s
+2024-09-10 18:24:26,040 - INFO - EPOCH 1: training on 1293263 raw words (1002459 effective words) took 0.5s, 1823448 effective words/s
+2024-09-10 18:24:26,603 - INFO - EPOCH 2: training on 1293263 raw words (1002896 effective words) took 0.6s, 1785483 effective words/s
+2024-09-10 18:24:27,165 - INFO - EPOCH 3: training on 1293263 raw words (1002546 effective words) took 0.6s, 1792263 effective words/s
+2024-09-10 18:24:27,733 - INFO - EPOCH 4: training on 1293263 raw words (1002577 effective words) took 0.6s, 1773064 effective words/s
+2024-09-10 18:24:27,733 - INFO - Word2Vec lifecycle event {'msg': 'training on 6466315 raw words (5013203 effective words) took 2.8s, 1801081 effective words/s', 'datetime': '2024-09-10T18:24:27.733128', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'train'}
+2024-09-10 18:24:27,733 - INFO - Word2Vec lifecycle event {'params': 'Word2Vec<vocab=47773, vector_size=100, alpha=0.025>', 'datetime': '2024-09-10T18:24:27.733128', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'created'}
+2024-09-10 18:24:30,684 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-10 18:24:30,684 - INFO - [33mPress CTRL+C to quit[0m

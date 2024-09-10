@@ -19,7 +19,7 @@ def data_oN_model(model):
 def load_w2v_model():
     print("load_w2v_model")
     # Load the preprocessed data
-    tokenized_docs, document_embeddings, vector_db, w2v_model = preprocess_documents()
+    tokenized_docs, document_embeddings, vector_db, w2v_model = preprocess_documents(True)
 
     # w2v_model is Trained with tokenized_docs and  load Word2Vec model
 

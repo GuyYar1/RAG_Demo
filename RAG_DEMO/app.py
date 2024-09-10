@@ -22,7 +22,7 @@ Session(app)
 
 print ("Load data and models")
 # Load data and models
-documents, document_embeddings, vector_db, w2v_model = preprocess_documents()
+documents, document_embeddings, vector_db, w2v_model = preprocess_documents(True)
 # Term: words and raw words
     # Word Types: This refers to the number of unique words or vocabulary items in the corpus.
     # In this case, there are 47,773 distinct words found in the text.
