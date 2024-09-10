@@ -5986,3 +5986,19 @@ the only thing i can say is that i'm not a fan of the film, but i'm not going to
 2024-09-10 19:09:58,785 - INFO - EPOCH 4 - PROGRESS: at 12.10% examples, 776299 words/s, in_qsize 8, out_qsize 0
 2024-09-10 19:09:59,795 - INFO - EPOCH 4 - PROGRESS: at 19.68% examples, 803877 words/s, in_qsize 8, out_qsize 0
 2024-09-10 19:10:00,805 - INFO - EPOCH 4 - PROGRESS: at 28.59% examples, 806733 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:10:01,804 - INFO - EPOCH 4 - PROGRESS: at 38.50% examples, 806951 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:10:02,813 - INFO - EPOCH 4 - PROGRESS: at 46.83% examples, 766649 words/s, in_qsize 6, out_qsize 1
+2024-09-10 19:10:03,820 - INFO - EPOCH 4 - PROGRESS: at 56.76% examples, 750461 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:10:04,844 - INFO - EPOCH 4 - PROGRESS: at 68.35% examples, 754843 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:10:05,847 - INFO - EPOCH 4 - PROGRESS: at 79.80% examples, 758138 words/s, in_qsize 8, out_qsize 0
+2024-09-10 19:10:06,856 - INFO - EPOCH 4 - PROGRESS: at 91.19% examples, 760191 words/s, in_qsize 7, out_qsize 0
+2024-09-10 19:10:07,871 - INFO - EPOCH 4 - PROGRESS: at 97.59% examples, 730469 words/s, in_qsize 8, out_qsize 0
+2024-09-10 19:10:08,208 - INFO - EPOCH 4: training on 11229709 raw words (8258976 effective words) took 11.4s, 722288 effective words/s
+2024-09-10 19:10:08,208 - INFO - Word2Vec lifecycle event {'msg': 'training on 56148545 raw words (41293261 effective words) took 54.0s, 764970 effective words/s', 'datetime': '2024-09-10T19:10:08.208308', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'train'}
+2024-09-10 19:10:08,208 - INFO - Word2Vec lifecycle event {'params': 'Word2Vec<vocab=698958, vector_size=100, alpha=0.025>', 'datetime': '2024-09-10T19:10:08.208308', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'created'}
+2024-09-10 19:10:35,958 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-10 19:10:35,958 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-10 19:10:51,934 - INFO - User received message: west
+2024-09-10 19:10:59,242 - INFO - Generated response: ["22162\nWainwright Walks: Coast To Coast\n1\n6\nen\n0\n0.0\nJulia Bradbury follows in the footsteps of guidebook writer Alfred Wainwright by walking across the whole of northern England from the west to the east coast\nFalse\n/ym8pbj1Pgk3L5HwjsSYManutcBC.jpg\n2009-04-09\n2009-05-14\nhttps://www.bbc.co.uk/programmes/b00jvgns\nFalse\nWainwright Walks: Coast To Coast\n1.379\n/twEi5IXayuaA9xkoL8q175Dq9xZ.jpg\nMiniseries\nEnded\nnan\nDocumentary\nnan\nen\nBBC Four\nGB\nEnglish\nnan\nUnited Kingdom\n30 136539\nDiscover Scotland: North Coast 500\n1\n2\nen\n1\n10.0\nMalcolm Jamieson travels through Scotland's most breathtaking landscapes as he uncovers the spectacular North Coast 500.", 'False\n/fXVauLjI7SzYL05ODV6B1fz9IDY.jpg\n2016-08-24\n2016-09-21\nhttps://www.bbc.co.uk/programmes/b07qb8f6\nTrue\nCoastal Path\n0.627\n/1PtkzFe1B4GMxZgOlHZz8ULmJTe.jpg\nScripted\nReturning Series\nnan\nDocumentary\nnan\nen\nBBC One\nnan\nEnglish\nBBC South West and Channel Islands\nnan\n29.9\n/1PtkzFe1B4GMxZgOlHZz8ULmJTe.jpg\nTrue\nCoastal Path\n0.627\n/1PtkzFe1B4GMx']
+2024-09-10 19:10:59,247 - INFO - 127.0.0.1 - - [10/Sep/2024 19:10:59] "POST /chat HTTP/1.1" 200 -

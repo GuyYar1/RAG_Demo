@@ -12,3 +12,4 @@ RAG_DEMO/flask_app.log
 RAG_DEMO/flask_app.log
 RAG_DEMO/flask_app.log
 *.log
+/RAG_DEMO
