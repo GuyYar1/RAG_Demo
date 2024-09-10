@@ -23,6 +23,21 @@ def download_imdb_data(url):
     # Read the CSV file into a DataFrame
     return pd.read_csv(url, delimiter=',', low_memory=False)
 
+
+def filter_non_empty_overview(df):
+    """
+    Filter rows where the 'Overview' column is not empty.
+
+    Parameters:
+        df (pd.DataFrame): The DataFrame to filter.
+
+    Returns:
+        pd.DataFrame: The filtered DataFrame.
+    """
+    #df[...]: Uses the boolean Series to filter the DataFrame. Only rows where the boolean Series is True are included in the result.
+    # This means only rows where the 'Overview' column is not empty are retained.
+    return df[df['overview'].str.strip() != '']
+
 def preprocess_documents(SelctIMDB=False):
     """
     Preprocess documents by tokenizing and generating document embeddings.
@@ -42,7 +57,12 @@ def preprocess_documents(SelctIMDB=False):
         documents = download_imdb_data(url)
         # Iterate over each row in the DataFrame
         concatenated_list = []
-        documents1 = pd
+
+        # Apply metadata filtering
+        documents = filter_non_empty_overview(documents)
+
+        #The iterrows():  method in pandas is used to iterate over DataFrame rows as (index, Series) pairs. Each row is
+        # returned as a pandas Series object where the index is the column names and the values are the cell values for that row.
         for index, row in documents.iterrows():
             # Concatenate all columns in the row, delimited by newlines
             concatenated_string = '\n'.join(row.astype(str))
