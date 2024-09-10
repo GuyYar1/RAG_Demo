@@ -20,7 +20,8 @@ def download_imdb_data(url):
     Replace with actual implementation if needed.
     """
     print("Downloading IMDb data...")
-    return pd.read_csv(url, delimiter='\t', low_memory=False)
+    # Read the CSV file into a DataFrame
+    return pd.read_csv(url, delimiter=',', low_memory=False)
 
 def preprocess_documents(SelctIMDB=False):
     """
@@ -37,10 +38,19 @@ def preprocess_documents(SelctIMDB=False):
     print("preprocess_documents")
 
     if SelctIMDB:
-        url = "path_to_imdb_data.tsv"  # Replace with actual path
-        print("Downloading IMDb data...")
+        url = "TMDB_tv_dataset_v3.csv"  # Replace with actual path
         documents = download_imdb_data(url)
-        documents = documents['text'].tolist()  # Adjust based on the actual column name
+        # Iterate over each row in the DataFrame
+        concatenated_list = []
+        documents1 = pd
+        for index, row in documents.iterrows():
+            # Concatenate all columns in the row, delimited by newlines
+            concatenated_string = '\n'.join(row.astype(str))
+            # Append the result to the list
+            concatenated_list.append(concatenated_string)
+            # Adjust based on the actual column name
+
+        documents = concatenated_list
     else:
         # Ensure NLTK resources are downloaded
         ensure_nltk_resources()
