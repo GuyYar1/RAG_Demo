@@ -1,6 +1,6 @@
 import re
 
-def generate_text_in_chunks(input_text, model, tokenizer, max_length=1024):
+def generate_text_in_chunks(input_text, model, tokenizer, max_length=512):
     """
     Generate text in chunks using a pre-trained language model.
 
@@ -16,16 +16,28 @@ def generate_text_in_chunks(input_text, model, tokenizer, max_length=1024):
     chunks = [input_text[i:i + max_length] for i in range(0, len(input_text), max_length)]
     generated_text = ""
 
-    for chunk in chunks:
-        inputs = tokenizer(chunk, return_tensors="pt", truncation=True, max_length=max_length)
-        outputs = model.generate(
-            **inputs,
-            max_length=max_length + 50,
-            max_new_tokens=50,
-            pad_token_id=tokenizer.eos_token_id
-        )
-        generated_text += tokenizer.decode(outputs[0], skip_special_tokens=True)
+    try:
+        for chunk in chunks:
+            # If an error happens in this loop (either here or in model.generate)
+            print(f"Chunk length: {len(chunk)}")
+            inputs = tokenizer(chunk, return_tensors="pt", truncation=True, max_length=max_length)
 
+            # If tokenizer or model.generate fails, this will throw an exception
+            outputs = model.generate(
+                **inputs,
+                max_length=max_length + 50,
+                max_new_tokens=50,
+                pad_token_id=tokenizer.eos_token_id
+            )
+
+            # Only this much text would be added up to the point of failure
+            generated_text += tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+    # If an exception occurs anywhere in the try block, this will catch it
+    except Exception as e:
+        print(f"Error during tokenization or generation: {e}")
+
+    # Return the generated text (which might be incomplete due to the exception)
     return generated_text
 
 
@@ -60,6 +72,8 @@ def rerank_response(items, keyword):
     list of str: Filtered and reranked list of items.
     """
     # Define a regular expression pattern to split the text into sentences
+
+
     print("rerank_response")
 
     pattern = r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s'

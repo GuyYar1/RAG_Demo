@@ -31,7 +31,18 @@ def load_w2v_model():
 
 # Function to load GPT-2 model
 def load_gpt2_model():
+    """
+    Tokenizer: Converts text into tokens that the model can process.
+    Model: The actual GPT-2 model that performs tasks like text generation based on the input tokens.
+
+    A tokenizer is in charge of preparing the inputs for a model. The library contains tokenizers for all the models. Most of the tokenizers are available in two flavors: a full python implementation and a
+    “Fast” implementation based on the Rust library 🤗 Tokenizers. The “Fast” implementations allows:
+    :return:
+    """
+
+    # Load the pre-trained GPT-2 tokenizer
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+    # Load the pre-trained GPT-2 model
     model = GPT2LMHeadModel.from_pretrained('gpt2')
     return tokenizer, model
 

@@ -38,7 +38,7 @@ vocabulary = list(w2v_model.wv.index_to_key)  # list of words in the vocabulary
 tokenizer, gpt2_model = load_gpt2_model()
 
 # Define the maximum sequence length
-MAX_LENGTH = 1024
+MAX_LENGTH = 512
 
 print("Waiting for request messages .... ")
 
@@ -51,6 +51,14 @@ def chat():
     print("got chat a request messages ....")
     user_message = request.json.get('message')
     logging.info(f"User received message: {user_message}")
+
+    NeedSortRerank = False
+
+    # "@Key" is indicator that we  want specific search
+    if "@KEY" in user_message:
+        user_message = user_message.strip()
+        user_message = user_message.replace("@KEY", "")
+        NeedSortRerank = True
 
     if 'conversation' not in session:
         session['conversation'] = []
@@ -72,26 +80,26 @@ def chat():
         # Generate text response in chunks
         generated_text = generate_text_in_chunks(input_text, gpt2_model, tokenizer, max_length=MAX_LENGTH)
 
-        # Use the rerank_response function to filter based on 'Crime' genre
-        generated_text_rerank = rerank_response(generated_text, user_message)
-
-        # Extract sentences with the keyword
-        results = extract_sentences_with_keyword(retrieved_docs, user_message)
-
-
-
-        # Print each filtered sentence with its document index
-        for result in results:
-            doc_index = result['doc_id']
-            sentence = result['sentence']
-            print(f"Document Index: {doc_index} - Sentence: {sentence}")
-
-        logging.info(f"Generated response: {generated_text_rerank}")
+        if NeedSortRerank:
+            print("NeedSortRerank")
+            # Use the rerank_response function to filter based on 'Crime' genre
+            generated_text_rerank = rerank_response(generated_text, user_message)
+            logging.info(f"Generated response: {generated_text_rerank}")
+            # Extract sentences with the keyword
+            results = extract_sentences_with_keyword(retrieved_docs, user_message)
+            generated_text = generated_text_rerank
+            # Print each filtered sentence with its document index
+            for result in results:
+                doc_index = result['doc_id']
+                sentence = result['sentence']
+                print(f"Document Index: {doc_index} - Sentence: {sentence}")
+        else:
+            logging.info(f"Generated response: {generated_text}")
 
         # Store bot response in session
-        session['conversation'].append({'role': 'system', 'content': generated_text_rerank})
+        session['conversation'].append({'role': 'system', 'content': generated_text})
 
-        return jsonify({'response': generated_text_rerank})
+        return jsonify({'response': generated_text})
 
     except Exception as e:
         logging.error(f"Error processing request: {e}")
@@ -112,6 +120,11 @@ def get_history():
     # Return the conversation history
     return jsonify({'history': session['conversation']})
 
+@app.route('/')
+def hello():
+    print("App is running")
+    return "Hello, World!"
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
