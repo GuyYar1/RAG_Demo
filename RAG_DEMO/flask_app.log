@@ -7178,3 +7178,94 @@ the only thing i can say is that i'm not a fan of the film, but i'm not going to
 2024-09-12 22:48:53,451 - INFO - 127.0.0.1 - - [12/Sep/2024 22:48:53] "POST /chat HTTP/1.1" 200 -
 2024-09-12 22:50:47,360 - INFO - User received message: Israel
 2024-09-12 22:51:05,794 - INFO - 127.0.0.1 - - [12/Sep/2024 22:51:05] "POST /chat HTTP/1.1" 200 -
+2024-09-16 14:57:29,202 - INFO - collecting all words and their counts
+2024-09-16 14:57:29,202 - INFO - PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2024-09-16 14:57:29,830 - INFO - PROGRESS: at sentence #10000, processed 930218 words, keeping 107434 word types
+2024-09-16 14:57:30,342 - INFO - PROGRESS: at sentence #20000, processed 1850108 words, keeping 177262 word types
+2024-09-16 14:57:30,701 - INFO - PROGRESS: at sentence #30000, processed 2700871 words, keeping 235738 word types
+2024-09-16 14:57:30,964 - INFO - PROGRESS: at sentence #40000, processed 3456544 words, keeping 286084 word types
+2024-09-16 14:57:31,196 - INFO - PROGRESS: at sentence #50000, processed 4154178 words, keeping 331910 word types
+2024-09-16 14:57:31,432 - INFO - PROGRESS: at sentence #60000, processed 4822530 words, keeping 372977 word types
+2024-09-16 14:57:31,632 - INFO - PROGRESS: at sentence #70000, processed 5427236 words, keeping 406587 word types
+2024-09-16 14:57:31,832 - INFO - PROGRESS: at sentence #80000, processed 6012155 words, keeping 438685 word types
+2024-09-16 14:57:32,063 - INFO - PROGRESS: at sentence #90000, processed 6612670 words, keeping 470600 word types
+2024-09-16 14:57:32,465 - INFO - PROGRESS: at sentence #100000, processed 7165650 words, keeping 499658 word types
+2024-09-16 14:57:32,668 - INFO - PROGRESS: at sentence #110000, processed 7753922 words, keeping 530055 word types
+2024-09-16 14:57:32,867 - INFO - PROGRESS: at sentence #120000, processed 8359162 words, keeping 560303 word types
+2024-09-16 14:57:33,059 - INFO - PROGRESS: at sentence #130000, processed 8957999 words, keeping 590449 word types
+2024-09-16 14:57:33,233 - INFO - PROGRESS: at sentence #140000, processed 9542199 words, keeping 620045 word types
+2024-09-16 14:57:33,392 - INFO - PROGRESS: at sentence #150000, processed 10145971 words, keeping 650038 word types
+2024-09-16 14:57:33,562 - INFO - PROGRESS: at sentence #160000, processed 10738791 words, keeping 678206 word types
+2024-09-16 14:57:33,697 - INFO - collected 698958 word types from a corpus of 11229709 raw words and 168623 sentences
+2024-09-16 14:57:33,697 - INFO - Creating a fresh vocabulary
+2024-09-16 14:57:36,128 - INFO - Word2Vec lifecycle event {'msg': 'effective_min_count=1 retains 698958 unique words (100.00% of original 698958, drops 0)', 'datetime': '2024-09-16T14:57:36.116326', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'prepare_vocab'}
+2024-09-16 14:57:36,128 - INFO - Word2Vec lifecycle event {'msg': 'effective_min_count=1 leaves 11229709 word corpus (100.00% of original 11229709, drops 0)', 'datetime': '2024-09-16T14:57:36.128417', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'prepare_vocab'}
+2024-09-16 14:57:40,561 - INFO - deleting the raw counts dictionary of 698958 items
+2024-09-16 14:57:40,571 - INFO - sample=0.001 downsamples 38 most-common words
+2024-09-16 14:57:40,571 - INFO - Word2Vec lifecycle event {'msg': 'downsampling leaves estimated 8258625.53313527 word corpus (73.5%% of prior 11229709)', 'datetime': '2024-09-16T14:57:40.571350', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'prepare_vocab'}
+2024-09-16 14:57:47,730 - INFO - estimated required memory for 698958 words and 100 dimensions: 908645400 bytes
+2024-09-16 14:57:47,730 - INFO - resetting layer weights
+2024-09-16 14:57:48,088 - INFO - Word2Vec lifecycle event {'update': False, 'trim_rule': 'None', 'datetime': '2024-09-16T14:57:48.088005', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'build_vocab'}
+2024-09-16 14:57:48,088 - INFO - Word2Vec lifecycle event {'msg': 'training model with 4 workers on 698958 vocabulary and 100 features, using sg=0 hs=0 sample=0.001 negative=5 window=5 shrink_windows=True', 'datetime': '2024-09-16T14:57:48.088005', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'train'}
+2024-09-16 14:57:49,103 - INFO - EPOCH 0 - PROGRESS: at 5.89% examples, 764391 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:50,106 - INFO - EPOCH 0 - PROGRESS: at 12.10% examples, 776265 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:51,108 - INFO - EPOCH 0 - PROGRESS: at 19.09% examples, 784193 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:57:52,111 - INFO - EPOCH 0 - PROGRESS: at 27.64% examples, 788426 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:53,117 - INFO - EPOCH 0 - PROGRESS: at 37.22% examples, 789997 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:54,119 - INFO - EPOCH 0 - PROGRESS: at 48.80% examples, 790448 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:55,122 - INFO - EPOCH 0 - PROGRESS: at 60.55% examples, 789700 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:56,128 - INFO - EPOCH 0 - PROGRESS: at 72.21% examples, 790589 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:57,132 - INFO - EPOCH 0 - PROGRESS: at 81.91% examples, 777178 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:58,132 - INFO - EPOCH 0 - PROGRESS: at 93.07% examples, 776672 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:57:58,702 - INFO - EPOCH 0: training on 11229709 raw words (8258394 effective words) took 10.6s, 778419 effective words/s
+2024-09-16 14:57:59,706 - INFO - EPOCH 1 - PROGRESS: at 5.96% examples, 779895 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:00,728 - INFO - EPOCH 1 - PROGRESS: at 12.37% examples, 789510 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:01,734 - INFO - EPOCH 1 - PROGRESS: at 19.47% examples, 794460 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:02,752 - INFO - EPOCH 1 - PROGRESS: at 28.06% examples, 792784 words/s, in_qsize 6, out_qsize 1
+2024-09-16 14:58:03,753 - INFO - EPOCH 1 - PROGRESS: at 37.72% examples, 795081 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:04,758 - INFO - EPOCH 1 - PROGRESS: at 49.69% examples, 797056 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:58:05,768 - INFO - EPOCH 1 - PROGRESS: at 61.34% examples, 793947 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:06,772 - INFO - EPOCH 1 - PROGRESS: at 72.79% examples, 792785 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:07,780 - INFO - EPOCH 1 - PROGRESS: at 84.27% examples, 792386 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:08,782 - INFO - EPOCH 1 - PROGRESS: at 95.69% examples, 791520 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:09,130 - INFO - EPOCH 1: training on 11229709 raw words (8259465 effective words) took 10.4s, 792369 effective words/s
+2024-09-16 14:58:10,139 - INFO - EPOCH 2 - PROGRESS: at 6.08% examples, 792308 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:58:11,142 - INFO - EPOCH 2 - PROGRESS: at 12.57% examples, 806897 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:12,156 - INFO - EPOCH 2 - PROGRESS: at 19.84% examples, 809193 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:13,165 - INFO - EPOCH 2 - PROGRESS: at 28.84% examples, 812745 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:14,167 - INFO - EPOCH 2 - PROGRESS: at 38.77% examples, 812459 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:58:15,170 - INFO - EPOCH 2 - PROGRESS: at 51.00% examples, 814146 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:16,178 - INFO - EPOCH 2 - PROGRESS: at 62.96% examples, 811466 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:17,178 - INFO - EPOCH 2 - PROGRESS: at 74.69% examples, 811134 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:18,188 - INFO - EPOCH 2 - PROGRESS: at 86.36% examples, 810078 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:19,195 - INFO - EPOCH 2 - PROGRESS: at 97.92% examples, 807915 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:19,366 - INFO - EPOCH 2: training on 11229709 raw words (8260359 effective words) took 10.2s, 807294 effective words/s
+2024-09-16 14:58:20,375 - INFO - EPOCH 3 - PROGRESS: at 5.84% examples, 758795 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:21,383 - INFO - EPOCH 3 - PROGRESS: at 12.04% examples, 772153 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:22,393 - INFO - EPOCH 3 - PROGRESS: at 18.74% examples, 769173 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:23,394 - INFO - EPOCH 3 - PROGRESS: at 27.23% examples, 777796 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:58:24,399 - INFO - EPOCH 3 - PROGRESS: at 36.54% examples, 779770 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:25,403 - INFO - EPOCH 3 - PROGRESS: at 48.29% examples, 783996 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:26,415 - INFO - EPOCH 3 - PROGRESS: at 60.26% examples, 785243 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:27,426 - INFO - EPOCH 3 - PROGRESS: at 71.68% examples, 784491 words/s, in_qsize 8, out_qsize 1
+2024-09-16 14:58:28,437 - INFO - EPOCH 3 - PROGRESS: at 83.51% examples, 786882 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:58:29,446 - INFO - EPOCH 3 - PROGRESS: at 95.31% examples, 788820 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:29,817 - INFO - EPOCH 3: training on 11229709 raw words (8259105 effective words) took 10.4s, 790542 effective words/s
+2024-09-16 14:58:30,830 - INFO - EPOCH 4 - PROGRESS: at 6.14% examples, 797758 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:31,837 - INFO - EPOCH 4 - PROGRESS: at 12.63% examples, 807742 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:32,847 - INFO - EPOCH 4 - PROGRESS: at 19.99% examples, 813375 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:33,848 - INFO - EPOCH 4 - PROGRESS: at 29.00% examples, 817346 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:34,857 - INFO - EPOCH 4 - PROGRESS: at 38.86% examples, 813253 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:58:35,864 - INFO - EPOCH 4 - PROGRESS: at 50.79% examples, 810955 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:36,869 - INFO - EPOCH 4 - PROGRESS: at 62.85% examples, 810112 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:37,880 - INFO - EPOCH 4 - PROGRESS: at 74.59% examples, 809004 words/s, in_qsize 8, out_qsize 0
+2024-09-16 14:58:38,888 - INFO - EPOCH 4 - PROGRESS: at 86.36% examples, 808939 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:39,895 - INFO - EPOCH 4 - PROGRESS: at 98.03% examples, 807460 words/s, in_qsize 7, out_qsize 0
+2024-09-16 14:58:40,043 - INFO - EPOCH 4: training on 11229709 raw words (8260558 effective words) took 10.2s, 808078 effective words/s
+2024-09-16 14:58:40,043 - INFO - Word2Vec lifecycle event {'msg': 'training on 56148545 raw words (41297881 effective words) took 52.0s, 794874 effective words/s', 'datetime': '2024-09-16T14:58:40.043064', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'train'}
+2024-09-16 14:58:40,044 - INFO - Word2Vec lifecycle event {'params': 'Word2Vec<vocab=698958, vector_size=100, alpha=0.025>', 'datetime': '2024-09-16T14:58:40.044142', 'gensim': '4.3.3', 'python': '3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.22631-SP0', 'event': 'created'}
+2024-09-16 14:59:13,889 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.100.102.4:5000
+2024-09-16 14:59:13,889 - INFO - [33mPress CTRL+C to quit[0m
