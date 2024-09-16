@@ -1,0 +1,40 @@
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{0}: checkout: moving from main to modular
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{2}: checkout: moving from modular to main
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{3}: checkout: moving from main to modular
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{4}: reset: moving to HEAD
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{5}: checkout: moving from modular to main
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{6}: checkout: moving from main to modular
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{7}: reset: moving to HEAD
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{8}: checkout: moving from modular to main
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{9}: reset: moving to HEAD
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{10}: checkout: moving from main to modular
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{11}: reset: moving to HEAD
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: checkout: moving from modular to main
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{13}: reset: moving to HEAD
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{14}: checkout: moving from main to modular
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{15}: reset: moving to HEAD
+[33m743e693[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{16}: commit: Update ppt
+[33m4901b28[m HEAD@{17}: commit: update. support Docker and workflow
+[33mab7462b[m HEAD@{18}: commit: Update_PPT
+[33mfcbea80[m HEAD@{19}: commit: update
+[33m2e0cfcc[m HEAD@{20}: commit: update
+[33mbf893ed[m HEAD@{21}: commit: Updated with Meta Filetr
+[33m0656835[m HEAD@{22}: commit: Update
+[33m449b185[m HEAD@{23}: commit: Update
+[33meb5e1f3[m HEAD@{24}: pull --ff --recurse-submodules --progress origin: Fast-forward
+[33m7fd4a72[m HEAD@{25}: checkout: moving from modular to main
+[33m0f863f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodular[m[33m, [m[1;31morigin/modular[m[33m)[m HEAD@{26}: commit: Rerank_andModular
+[33m7fd4a72[m HEAD@{27}: checkout: moving from main to modular
+[33m7fd4a72[m HEAD@{28}: commit: relevance_checkfor_rerank
+[33m6b2d820[m HEAD@{29}: commit: minor
+[33m3b1f43b[m HEAD@{30}: pull --ff --recurse-submodules --progress origin: Merge made by the 'ort' strategy.
+[33m29d558c[m HEAD@{31}: commit: Update
+[33mf5b6f7c[m HEAD@{32}: commit: compatibility to IMBD, update ppt
+[33m6f0dba1[m HEAD@{33}: commit: Update pptx
+[33mc636b45[m HEAD@{34}: commit: Works
+[33m82383f4[m HEAD@{35}: commit: Create RAG.pptx
+[33m27caeb7[m HEAD@{36}: commit: RAG
+[33m4bf97cf[m HEAD@{37}: commit: RAG_usingFlask_gpt2
+[33mf8ee3d3[m HEAD@{38}: commit: Init
+[33m139363c[m HEAD@{39}: commit (initial): Initial commit
