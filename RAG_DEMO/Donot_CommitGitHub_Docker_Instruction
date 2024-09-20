@@ -1,0 +1,39 @@
+1. enter to docker hub
+2.5. open docker desktop
+2. do login from the terminal \cmd
+3. make requirment command: poetry export -f requirements.txt --output requirements.txt --without-hashes
+4. Dockerfile is created: docker build -t my_rag2:latest .
+5. run docker (your-image-name =Rag1) :docker run -p 5000:5000 your-image-name
+    docker run -d -p 5000:5000 --name my_rag2_container my_rag2
+6. verify login on terminal- docker login
+7. INFO: take the name of the repository name from git-hub or create one: guy1234
+8. tag the repository: docker tag your-image-name repository name/repository
+9. docker push the tagged docker by:  docker push guy1234/guyyar_repository
+10 from docker desktop : Image  three dots and push it to docker Hub
+
+details:
+guy1234 is your Docker Hub username.
+guyyar_repository is the name of the repository
+
+
+what the post should include in body:
+1. @KEYIsrael @KEYwest  ( look on specific using prefix)
+2. Israel , west   (look on senamtic without focus or rerank ir)
+
+
+@cmd\terminal on Docker:
+1 docker login
+
+2 List all running containers:
+ docker ps
+
+3 List all containers (including stopped):
+docker ps -a
+
+4 List containers by image name (my_rag2):
+docker ps -a --filter ancestor=my_rag2
+
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_name_or_id>
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' bc56010cbe88
+
