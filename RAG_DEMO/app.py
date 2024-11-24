@@ -20,7 +20,16 @@ app.secret_key = '@@GYyour_secret_key123%@@'
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
-print ("Load data and models")
+print("Load data and models")
+
+# Function to limit text to a specified number of words
+def limit_words(text, max_words=200):
+    words = text.split()
+    limited_words = words[:max_words]
+    limited_text = ' '.join(limited_words)
+    return limited_text
+
+
 # Load data and models
 documents, document_embeddings, vector_db, w2v_model = preprocess_documents(True)
 # Term: words and raw words
@@ -32,8 +41,12 @@ documents, document_embeddings, vector_db, w2v_model = preprocess_documents(True
 
 # load w2v_model
 #w2v_model = load_w2v_model()
+
 # Access the vocabulary
 vocabulary = list(w2v_model.wv.index_to_key)  # list of words in the vocabulary
+print("Vocabulary size:", len(vocabulary))
+#print the vocabulary
+print("Vocabulary:", vocabulary)
 
 tokenizer, gpt2_model = load_gpt2_model()
 
@@ -41,6 +54,8 @@ tokenizer, gpt2_model = load_gpt2_model()
 MAX_LENGTH = 512
 
 print("Waiting for request messages .... ")
+
+
 
 
 # Endpoints:
@@ -71,11 +86,16 @@ def chat():
 
         # Compute cosine similarity and retrieve documents
         similarities = cosine_similarity(query_embedding.reshape(1, -1), document_embeddings)
-        top_k_indices = np.argsort(similarities[0])[-5:][::-1]
+        top_k_indices = np.argsort(similarities[0])[-3:][::-1] # only 3 top K
         retrieved_docs = [vector_db[idx] for idx in top_k_indices]
 
         # Concatenate retrieved documents only
         input_text = " ".join(retrieved_docs)
+
+        # Limit the concatenated text to 400 words
+        max_words = 400
+        input_text = limit_words(input_text, max_words)
+        logging.info(f"Input text for GPT-2: {input_text} which is in len of:{max_words}")
 
         # Generate text response in chunks
         generated_text = generate_text_in_chunks(input_text, gpt2_model, tokenizer, max_length=MAX_LENGTH)
