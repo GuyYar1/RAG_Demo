@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\DELL\Documents\GitHub\RAG_Demo\RAG_DEMO\test_e2e.py", line 1, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'

@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify, session
 from flask_session import Session
-from model_service import load_w2v_model, get_embedding, load_gpt2_model
+from model_service import get_query_embedding
 from text_generator import generate_text_in_chunks, rerank_response, extract_sentences_with_keyword
-from sklearn.metrics.pairwise import cosine_similarity
 import logging
 import numpy as np
+from simple_vector_store import SimpleVectorStore
 from data_loader import preprocess_documents
-
 
 print("Configure logging")
 # Configure logging
@@ -22,54 +21,28 @@ Session(app)
 
 print("Load data and models")
 
-# Function to limit text to a specified number of words
-def limit_words(text, max_words=200):
-    words = text.split()
-    limited_words = words[:max_words]
-    limited_text = ' '.join(limited_words)
-    return limited_text
+# Initialize Vector Store
+vector_store = SimpleVectorStore()
+if len(vector_store.documents) == 0:
+    print("Vector Store empty, running initial data processing...")
+    vector_store = preprocess_documents()
+else:
+    print(f"Vector Store loaded with {len(vector_store.documents)} documents.")
 
-
-# Load data and models
-documents, document_embeddings, vector_db, w2v_model = preprocess_documents(True)
-# Term: words and raw words
-    # Word Types: This refers to the number of unique words or vocabulary items in the corpus.
-    # In this case, there are 47,773 distinct words found in the text.
-    # Note that this count includes only unique words, not their occurrences.
-    # Raw Words: This is the total number of words in the corpus, including repetitions.
-    # In this case, there are 1,293,263 total words. This count includes all instances of each word, not just the unique ones
-
-# load w2v_model
-#w2v_model = load_w2v_model()
-
-# Access the vocabulary
-vocabulary = list(w2v_model.wv.index_to_key)  # list of words in the vocabulary
-print("Vocabulary size:", len(vocabulary))
-#print the vocabulary
-print("Vocabulary:", vocabulary)
-
-tokenizer, gpt2_model = load_gpt2_model()
-
-# Define the maximum sequence length
+# Define the maximum sequence length (kept for compatibility)
 MAX_LENGTH = 512
 
 print("Waiting for request messages .... ")
 
-
-
-
 # Endpoints:
-# /chat: Handles user messages, generates a response using the GPT-2 model, and maintains conversation history in the session.
-# /reset: Clears the session, which is useful for resetting the chat context.
 @app.route('/chat', methods=['POST'])
 def chat():
     print("got chat a request messages ....")
     user_message = request.json.get('message')
-    logging.info(f"User received message: {user_message}")
+    target_model = request.json.get('model', 'mistral') # Default to mistral if not specified
+    logging.info(f"User received message: {user_message} (Model: {target_model})")
 
     NeedSortRerank = False
-
-    # "@Key" is indicator that we  want specific search
     if "@KEY" in user_message:
         user_message = user_message.strip()
         user_message = user_message.replace("@KEY", "")
@@ -81,40 +54,36 @@ def chat():
     # Update conversation history
     session['conversation'].append({'role': 'user', 'content': user_message})
     try:
-        # Convert query to embedding
-        query_embedding = get_embedding(user_message, w2v_model)
+        # Convert query to embedding (using Ollama via model_service)
+        query_embedding = get_query_embedding(user_message)
 
-        # Compute cosine similarity and retrieve documents
-        similarities = cosine_similarity(query_embedding.reshape(1, -1), document_embeddings)
-        top_k_indices = np.argsort(similarities[0])[-3:][::-1] # only 3 top K
-        retrieved_docs = [vector_db[idx] for idx in top_k_indices]
-
-        # Concatenate retrieved documents only
+        # Retrieval from SimpleVectorStore
+        # query expects list of arrays
+        results = vector_store.query([query_embedding], n_results=5)
+        
+        # Flatten documents list (results['documents'] is list of list of strings)
+        retrieved_docs = results['documents'][0]
+        
+        # Concatenate retrieved documents
         input_text = " ".join(retrieved_docs)
+        
+        logging.info(f"Retrieved {len(retrieved_docs)} chunks for context.")
 
-        # Limit the concatenated text to 400 words
-        max_words = 400
-        input_text = limit_words(input_text, max_words)
-        logging.info(f"Input text for GPT-2: {input_text} which is in len of:{max_words}")
+        # Generate text response using Ollama (via text_generator wrapper)
+        generated_text = generate_text_in_chunks(input_text, user_message, model=target_model, max_length=MAX_LENGTH)
 
-        # Generate text response in chunks
-        generated_text = generate_text_in_chunks(input_text, gpt2_model, tokenizer, max_length=MAX_LENGTH)
-
+        # Reranking/Filtering logic (Legacy feature kept)
         if NeedSortRerank:
             print("NeedSortRerank")
-            # Use the rerank_response function to filter based on 'Crime' genre
-            generated_text_rerank = rerank_response(generated_text, user_message)
-            logging.info(f"Generated response: {generated_text_rerank}")
-            # Extract sentences with the keyword
+            # This function logic might be less relevant with LLM but kept for structure
+            # Ideally LLM handles this, but we'll print findings
             results = extract_sentences_with_keyword(retrieved_docs, user_message)
-            generated_text = generated_text_rerank
-            # Print each filtered sentence with its document index
             for result in results:
                 doc_index = result['doc_id']
                 sentence = result['sentence']
                 print(f"Document Index: {doc_index} - Sentence: {sentence}")
-        else:
-            logging.info(f"Generated response: {generated_text}")
+        
+        logging.info(f"Generated response: {generated_text}")
 
         # Store bot response in session
         session['conversation'].append({'role': 'system', 'content': generated_text})
@@ -122,8 +91,9 @@ def chat():
         return jsonify({'response': generated_text})
 
     except Exception as e:
-        logging.error(f"Error processing request: {e}")
+        logging.error(f"Error processing request: {e}", exc_info=True)
         return {"error": "Internal Server Error"}, 500
+
 @app.route('/reset', methods=['POST'])
 def reset_session():
     print("got reset a request messages ....")
@@ -134,10 +104,7 @@ def reset_session():
 @app.route('/history', methods=['GET'])
 def get_history():
     if 'conversation' not in session:
-        # Return an empty list if there is no conversation history
         return jsonify({'history': []})
-
-    # Return the conversation history
     return jsonify({'history': session['conversation']})
 
 @app.route('/')

@@ -1,0 +1,22 @@
+2025-12-14 12:57:09,328 - INFO - User received message: What is diabetic retinopathy?
+2025-12-14 12:57:10,023 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embeddings "HTTP/1.1 200 OK"
+2025-12-14 12:57:10,027 - INFO - Retrieved 3 chunks for context.
+2025-12-14 13:00:50,554 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-12-14 13:00:50,555 - INFO - Generated response:  Diabetic retinopathy is one of the major eye-related disorders that can occur in patients with diabetes. It results from glucose-related damage to neurones of the retina. More than 95% of patients will have detectable changes after 20 years.
+SimpleVectorStore: Loaded 23 items from vector_store.pkl
+Configure logging
+Initialize the flask app
+Load data and models
+SimpleVectorStore: Loaded 23 items from vector_store.pkl
+Vector Store loaded with 23 documents.
+Waiting for request messages .... 
+
+--- Starting E2E Test ---
+App is running
+ROOT endpoint: OK
+Testing /chat endpoint (this calls Ollama)...
+got chat a request messages ....
+Status Code: 200
+Response received:
+ Diabetic retinopathy is one of the major eye-related disorders that can occur in patients with diabetes. It results from glucose-related damage to neurones of the retina. More than 95% of patients will have detectable changes after 20 years.
+CHAT endpoint: OK

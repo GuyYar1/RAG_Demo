@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "C:\Users\DELL\Documents\GitHub\RAG_Demo\RAG_DEMO\validate_phase2.py", line 1, in <module>
+    from data_loader import preprocess_documents
+  File "C:\Users\DELL\Documents\GitHub\RAG_Demo\RAG_DEMO\data_loader.py", line 8, in <module>
+    from sentence_transformers import SentenceTransformer
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\sentence_transformers\__init__.py", line 10, in <module>
+    from sentence_transformers.backend import (
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\sentence_transformers\backend\__init__.py", line 3, in <module>
+    from .load import load_onnx_model, load_openvino_model
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\sentence_transformers\backend\load.py", line 7, in <module>
+    from transformers.configuration_utils import PretrainedConfig
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\transformers\__init__.py", line 27, in <module>
+    from . import dependency_versions_check
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\transformers\dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\transformers\utils\__init__.py", line 24, in <module>
+    from .auto_docstring import (
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\transformers\utils\auto_docstring.py", line 30, in <module>
+    from .generic import ModelOutput
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\transformers\utils\generic.py", line 51, in <module>
+    import torch
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\torch\__init__.py", line 281, in <module>
+    _load_dll_libraries()
+  File "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\torch\__init__.py", line 264, in _load_dll_libraries
+    raise err
+OSError: [WinError 1114] A dynamic link library (DLL) initialization routine failed. Error loading "C:\Users\DELL\AppData\Roaming\Python\Python311\site-packages\torch\lib\c10.dll" or one of its dependencies.
