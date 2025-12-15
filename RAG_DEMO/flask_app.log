@@ -9160,3 +9160,39 @@ Assistant: As a severe patient of diabetes with classification level 3 (Class II
 
 If you are already taking medication for your diabites, make sure to follow your treatment plan closely to ensure that you're taking the right dosage and not experiencing any adverse side effects. If you have additional questions or concerns about managing your diagnosis, do not hesitate to seek further advice from your healthcare provider.
 2025-12-15 19:23:59,504 - INFO - 127.0.0.1 - - [15/Dec/2025 19:23:59] "POST /chat HTTP/1.1" 200 -
+2025-12-15 19:27:05,511 - INFO - User received message: Im 48 yers old and i have diabities and i found to be at classification level 3 of 4 which is severe. what should i do ? how can i be handled? (Model: biomistral)
+2025-12-15 19:27:05,588 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embeddings "HTTP/1.1 200 OK"
+2025-12-15 19:27:05,590 - INFO - Retrieved 5 chunks for context.
+2025-12-15 19:27:05,593 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 404 Not Found"
+2025-12-15 19:27:19,562 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-12-15 19:27:19,563 - INFO - Generated response: To handle a person with a classification level 3 of 4 (severe) of Type 2 Diabetes, you will need to follow the following guidelines:
+
+1. Regular blood sugar checks and follow-up visits with your healthcare provider(s).
+2. Continuous monitoring of blood pressure levels to prevent or manage hypertension.
+3. Regular visits to an Endocrinologist for monitoring, adjusting insulin therapy as needed, and discussing potential complications, such as hypoglycemia or hyperosmolar hyperglycaemia.
+4. Consultation with a specialist in diabetes management, if indicated, to develop tailored treatment plans for specific symptoms or complications.
+5. Continuous oversight of glucose levels at home using continuous glucose monitoring devices (CGMs) or wearable sensors.
+6. Follow-up with a specialist in diabetes education and counseling to develop an individualized action plan for managing symptoms, lifestyle changes, and overall wellness.
+7. Ensure that your healthcare provider(s) has access to all relevant medical records and information, including recent blood tests, insulin prescriptions, and other pertinent data.
+8. Keep a detailed diary or journal of all health issues and symptoms, medications taken, and lifestyle changes made during treatment. This can be helpful in identifying potential complications and adjusting treatments accordingly.
+9. Seek support from family and friends who are also dealing with type 2 diabetes, as they may have insights into how to cope with symptoms or navigate the healthcare system.
+2025-12-15 19:27:19,565 - INFO - 127.0.0.1 - - [15/Dec/2025 19:27:19] "POST /chat HTTP/1.1" 200 -
+2025-12-15 19:27:27,752 - INFO - User received message: Im 48 yers old and i have diabities and i found to be at classification level 3 of 4 which is severe. what should i do ? how can i be handled? (Model: biomistral)
+2025-12-15 19:27:27,847 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embeddings "HTTP/1.1 200 OK"
+2025-12-15 19:27:27,847 - INFO - Retrieved 5 chunks for context.
+2025-12-15 19:27:27,852 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 404 Not Found"
+2025-12-15 19:27:44,729 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-12-15 19:27:44,730 - INFO - Generated response: There are several options for managing severe diabetes based on your individual characteristics, but here are a few general guidelines to consider:
+
+1. Maintain good dietary habits: Eating a balanced and nutritious diet can help improve glucose control, which is crucial for managing severe diabetes. Avoid processed and sugary foods and focus on healthy whole grains, fruits, vegetables, and lean proteins.
+
+2. Manage insulin levels: Chronic hypoglycemia (low blood sugar) can worsen diabetes, which is why it's essential to monitor insulin levels closely and maintain a healthy baseline. Talk to your healthcare provider about adjusting insulin dosages based on blood glucose readings.
+
+3. Stay active: Exercise can help improve heart and brain function, as well as burn off excess energy that could potentially lead to weight gain. However, avoid exercise for at least 6-8 hours before bedtime to prevent spikes in blood sugar levels.
+
+4. Maintain adequate hydration: Staying hydrated is essential for good insulin function and glucose regulation. Drink plenty of fluids during the day, but avoid excessive consumption or drinks with added sugars as they can contribute to further hypoglycemia.
+
+5. Seek medical attention: If you experience severe hypoglycemia or worsening diabetes symptoms that are not responding to lifestyle changes, seek medical attention from a qualified healthcare professional. They will be able to provide the appropriate treatment and manage any underlying medical conditions.
+
+Remember, managing severe diabetes is a lifelong process, so it's essential to stay committed to your care plan and take care of yourself every day.
+2025-12-15 19:27:44,732 - INFO - 127.0.0.1 - - [15/Dec/2025 19:27:44] "POST /chat HTTP/1.1" 200 -
