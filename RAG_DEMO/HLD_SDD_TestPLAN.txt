@@ -1,0 +1,449 @@
+Certainly! Below, I’ve created a **High-Level Design (HLD)** document and a **Software Design Document (SDD)** for your **RAG-based Medical Assistant System** specialized in **Diabetic Retinopathy** queries. This includes testing strategies for validating the system's functionality.
+
+---
+
+## **High-Level Design (HLD)**
+
+### **1. Introduction**
+
+The system is designed to assist medical professionals by answering queries related to **Diabetic Retinopathy (DR)**, utilizing a **Retrieval-Augmented Generation (RAG)** pipeline. The system leverages specialized embeddings, modern language models like **BioMistral 7B**, and a corpus focused on **medical knowledge** to generate contextually relevant answers for different severity levels of DR.
+
+### **2. System Overview**
+
+The **RAG pipeline** is designed to handle medical queries, process them, retrieve relevant data from a medical knowledge base, and generate responses using deep learning models tailored to the biomedical domain.
+
+* **Core Architecture**:
+
+  * **Embedding Model**: **Nomic-Embed-Text** (via Ollama API) for generating domain-specific embeddings.
+  * **Vector Store/Indexing**: **Ephemeral in-memory vector store** for fast retrieval of embeddings and documents.
+  * **Language Model (LLM)**: **BioMistral 7B** (default) and **TinyLlama** (option) for query generation.
+  * **Inference Layer**: **Ollama API** for model serving and switching.
+  * **Corpus/Knowledge Base**: Curated medical corpus for **Diabetic Retinopathy** and general medical knowledge.
+
+### **3. System Components**
+
+#### **3.1. Embedding Model**
+
+* **Purpose**: Convert input queries and documents into fixed-length vectors (embeddings) that can be compared for semantic similarity.
+* **Technology**: **Nomic-Embed-Text** model, accessed through the **Ollama API**.
+* **Output**: A high-dimensional embedding that represents the semantic meaning of the input text.
+
+#### **3.2. Vector Store/Indexing**
+
+* **Purpose**: Store embeddings and associated document chunks for fast retrieval based on semantic similarity.
+* **Technology**: **In-memory vector store**.
+* **Output**: Retrieved document chunks related to the input query.
+
+#### **3.3. Language Model (LLM)**
+
+* **Purpose**: Generate human-like text responses to queries based on the retrieved document chunks.
+* **Technology**: **BioMistral 7B** for biomedical domain-specific tasks and **TinyLlama** for efficiency.
+* **Output**: Natural language responses tailored to the medical context.
+
+#### **3.4. Inference Layer**
+
+* **Purpose**: Orchestrates the process of embedding generation, retrieval, and LLM response generation.
+* **Technology**: **Ollama API** containerized engine for serving both **embedding generation** and **LLM inference**.
+
+#### **3.5. Corpus/Knowledge Base**
+
+* **Purpose**: Serve as the source of knowledge for generating responses.
+* **Content**: Clinical guidelines, systematic reviews, research papers, and other authoritative sources on **Diabetic Retinopathy**.
+* **Technology**: Curated datasets with a focus on DR severity stages, treatments, and patient management.
+
+### **4. Workflow Diagram**
+
+**Query Processing Workflow:**
+
+```
++-------------+     +----------------+     +--------------------+     +---------------------+
+| User Query  | --> | Generate Embedding| --> | Retrieve Relevant   | --> | Generate Response   |
+| (e.g., "What  |     | (via Nomic-Embed)|     | Chunks (via Vector   |     | (via BioMistral or   |
+| are the      |     | Model API)       |     | Store)               |     | TinyLlama)           |
+| symptoms of  |     +------------------+     +---------------------+     +---------------------+
+| diabetic     |                                                      
+| retinopathy?)|                                                      
++-------------+                                                        
+```
+
+### **5. High-Level Design Diagram**
+
+```
++------------------+  <---->  +------------------+  <---->  +-------------------+  <---->  +---------------------+
+|   User Interface |          |    API Gateway   |          |   Embedding Model  |         |  Language Model     |
+|  (Front-End UI)  | <------> |   (Flask API)    | <------>  | (Nomic-Embed-Text) |  <----> | (BioMistral, TinyLlama)|
+|                  |          |                  |          |                    |         |                     |
++------------------+          +------------------+          +--------------------+         +---------------------+
+                                                                                             
++--------------------+    <---->  +------------------------+  <---->  +------------------------+
+|  Vector Store      |          |   Query Processing      |          |   Corpus/Knowledge Base |
+| (In-memory storage)|          |  (Retrieval Layer)     |          | (Diabetic Retinopathy   |
+|                    |          |                        |          |  Sources)               |
++--------------------+          +------------------------+          +------------------------+
+```
+
+---
+
+## **Software Design Document (SDD)**
+
+### **1. Introduction**
+
+This document provides detailed software design specifications for the **RAG-based Diabetic Retinopathy Query System**. The design involves key components, data flow, testing strategies, and batch question handling for validation.
+
+### **2. System Design**
+
+#### **2.1. Modules and Components**
+
+* **API Gateway (Flask)**: Handles HTTP requests and routes them to the respective system components.
+* **Embedding Generation (Nomic-Embed-Text)**: Converts input queries into embeddings using a domain-specific model.
+* **Vector Store**: Stores the generated embeddings and enables fast similarity search for document retrieval.
+* **Inference Layer**: Uses **Ollama API** to query **BioMistral** and **TinyLlama** models, generating natural language answers.
+* **Knowledge Base**: A curated set of documents and medical guidelines specifically focused on **Diabetic Retinopathy**.
+
+#### **2.2. Data Flow**
+
+1. **Input Query**: User inputs a question related to diabetic retinopathy.
+2. **Embedding Generation**: The query is converted into an embedding.
+3. **Document Retrieval**: Relevant documents or chunks are retrieved from the in-memory vector store.
+4. **Response Generation**: The retrieved information is passed to the LLM (BioMistral or TinyLlama) to generate a human-like response.
+5. **Output Response**: The generated response is sent back to the user.
+
+#### **2.3. Detailed System Flow**
+
+1. **User Query**:
+
+   * The user inputs a query through the front-end interface.
+2. **Embedding**:
+
+   * The query is sent to the **Nomic-Embed-Text** model, which generates an embedding.
+3. **Retrieval**:
+
+   * The embedding is compared with stored document embeddings in the **vector store**.
+   * The most relevant document chunks are retrieved.
+4. **LLM Response**:
+
+   * The retrieved document chunks are passed to the **BioMistral** or **TinyLlama** model for response generation.
+5. **Return Output**:
+
+   * The final response is sent to the front-end UI.
+
+---
+
+### **3. Testing Techniques**
+
+#### **3.1. Unit Testing**
+
+* **Objective**: Test individual components like embedding generation, document retrieval, and response generation.
+* **Tools**: `pytest`, `unittest`
+* **Test Cases**:
+
+  * **Embedding Generation**: Verify that embeddings are generated correctly for different types of medical queries.
+  * **Document Retrieval**: Ensure that the most relevant documents are retrieved based on query embeddings.
+  * **Response Generation**: Test if the language models (BioMistral and TinyLlama) generate relevant, medically accurate answers.
+
+#### **3.2. Integration Testing**
+
+* **Objective**: Test the interaction between the system components (e.g., API Gateway, embedding model, vector store, and LLM).
+* **Tools**: Postman, `pytest`
+* **Test Cases**:
+
+  * **Query Handling**: Test the complete flow of receiving a query, embedding it, retrieving documents, and generating a response.
+  * **API Endpoints**: Validate the endpoints to ensure proper request handling and data flow.
+
+#### **3.3. Performance Testing**
+
+* **Objective**: Ensure the system performs efficiently under load.
+* **Tools**: `JMeter`, `Locust`
+* **Test Cases**:
+
+  * **Load Testing**: Simulate multiple users to ensure the system can handle a large number of requests simultaneously.
+  * **Response Time**: Measure the time taken to generate responses and ensure it meets acceptable thresholds.
+
+#### **3.4. End-to-End Testing**
+
+* **Objective**: Test the entire system from user input to response output.
+* **Test Cases**:
+
+  * **Functional Testing**: Validate that the system answers the batch of diabetic retinopathy-related questions correctly.
+  * **Real-World Scenarios**: Use clinical case scenarios to ensure the system can handle practical, real-world queries.
+
+
+
+
+### **3.5. Batch Testing for Medical Queries (Continued)**
+
+The **batch testing** for medical queries involves running a set of predefined questions through the system, evaluating the accuracy, and ensuring that the responses align with clinical guidelines and best practices for diabetic retinopathy management.
+
+Here are additional example questions to be used for testing:
+
+4. **How can I reduce the progression of diabetic retinopathy if I have moderate NPDR and center-involved diabetic macular edema (CI-DME)?**
+5. **What are the first-line treatments for someone diagnosed with proliferative diabetic retinopathy (PDR)?**
+6. **If I experience vitreous hemorrhage with PDR, what are my treatment options and the recommended timeframe for intervention?**
+7. **Can tight glycemic control (e.g., rapid HbA1c lowering) accelerate the progression of retinopathy in individuals without visible signs of retinopathy?**
+8. **What is the recommended follow-up schedule for someone with severe NPDR who has not yet developed proliferative diabetic retinopathy?**
+9. **Should an individual with Type 2 diabetes and mild NPDR be started on fenofibrate to prevent progression to more severe stages of retinopathy?**
+10. **When should anti-VEGF therapy be considered for diabetic macular edema (DME) in patients with moderate NPDR and good visual acuity?**
+
+#### **Expected Results**
+
+* For each query, ensure that the **response is relevant**, medically accurate, and **aligned with clinical guidelines**.
+* Ensure that **information retrieval from the vector store** returns high-quality, relevant document chunks for each query.
+* The **LLM responses** should be clear, concise, and provide actionable medical information based on the severity of diabetic retinopathy.
+
+---
+
+### **4. Data Schema and Storage**
+
+#### **4.1. Corpus/Knowledge Base Schema**
+
+* **Document ID**: Unique identifier for each document chunk.
+* **Document Type**: Type of document (e.g., Clinical Guidelines, Research Article, Treatment Protocol).
+* **Content**: The actual text/content of the document chunk.
+* **Embedding**: Precomputed embedding for the document chunk.
+* **Source**: Original source or reference for the document (e.g., AAO guidelines, NICE guidelines).
+* **Timestamp**: Last modification or addition timestamp.
+
+#### **4.2. Vector Store Schema**
+
+* **Embedding ID**: Unique identifier for each embedding.
+* **Document ID**: Reference to the original document associated with this embedding.
+* **Embedding Vector**: The high-dimensional vector generated by the embedding model.
+* **Metadata**: Any additional metadata such as document type, date of addition, and related tags.
+
+#### **4.3. Response Schema**
+
+* **Query ID**: Unique identifier for the query.
+* **User Query**: The input query from the user.
+* **Model Used**: Which LLM was used to generate the response (e.g., BioMistral, TinyLlama).
+* **Response Text**: The generated response text.
+* **Confidence Score**: A measure of how confident the system is in its response.
+* **Timestamp**: Time the response was generated.
+
+---
+
+## **5. System Performance and Scaling**
+
+### **5.1. Performance Goals**
+
+* **Response Time**: The system should return an answer within 2-3 seconds for most queries. More complex queries may take up to 5 seconds.
+* **Scalability**: The system must handle up to **500 concurrent queries** without significant performance degradation.
+* **Availability**: The system should maintain **99.9% uptime** to ensure high availability for medical professionals.
+
+### **5.2. Scaling Strategy**
+
+* **Horizontal Scaling**: For high availability, deploy the application across multiple servers with load balancing to distribute the request load.
+* **Elastic Load Balancer**: Use an elastic load balancer to ensure that high traffic during peak hours is handled smoothly by scaling the resources dynamically.
+* **Containerization**: The system should be containerized using **Docker** to allow for easy deployment and scaling in a cloud environment.
+
+---
+
+## **6. Security Considerations**
+
+### **6.1. Data Privacy**
+
+* **HIPAA Compliance**: Ensure that the system complies with **HIPAA (Health Insurance Portability and Accountability Act)** to protect patient data privacy.
+* **Encryption**: All sensitive data (queries, responses) must be encrypted in transit (TLS/SSL) and at rest (AES-256).
+* **Authentication**: Use **OAuth 2.0** or **API Keys** for authenticating and securing access to the system, especially for healthcare professionals accessing patient-specific information.
+
+### **6.2. System Security**
+
+* **Rate Limiting**: Implement rate-limiting to prevent abuse or denial-of-service (DoS) attacks.
+* **Input Validation**: All user input should be validated to prevent malicious inputs (e.g., SQL injection, script injection).
+* **Error Handling**: Ensure that error messages do not leak sensitive information about the system’s internals.
+
+---
+
+## **7. Deployment and Maintenance**
+
+### **7.1. Deployment**
+
+* **Deployment Strategy**: Use **CI/CD pipelines** for automated testing, building, and deployment.
+
+  * Tools: **GitHub Actions**, **Jenkins**, **Docker**.
+  * Environments: Develop, Test, Staging, Production.
+* **Cloud Platform**: Deploy the system to **AWS** or **Google Cloud** for scalable hosting.
+* **Container Orchestration**: Use **Kubernetes** for container orchestration in the production environment.
+
+### **7.2. Maintenance**
+
+* **Version Control**: Use **Git** for version control and maintain detailed release notes for new versions.
+* **Monitoring**: Set up monitoring using **Prometheus** and **Grafana** to track the health and performance of the system.
+* **Logging**: Implement logging using **ELK Stack** (Elasticsearch, Logstash, Kibana) to capture and analyze logs for troubleshooting and performance monitoring.
+
+---
+
+## **8. Conclusion**
+
+The **RAG-based Diabetic Retinopathy Query System** represents a significant step forward in utilizing advanced AI models and modern RAG pipelines for the healthcare industry, specifically in the domain of **Diabetic Retinopathy**. The modernized architecture ensures that the system can provide **accurate**, **reliable**, and **fast responses** to clinical queries, assisting healthcare professionals in making informed decisions.
+
+With the implementation of specialized models, high-quality embeddings, and a focused medical corpus, the system is now capable of delivering high-impact, domain-specific knowledge in real-time.
+
+The testing techniques, including unit, integration, and performance tests, ensure that the system meets the required standards and can operate efficiently in real-world medical settings.
+
+---
+
+**End of Document**
+
+---
+
+This **HLD** and **SDD** outline the critical aspects of the **RAG-based Medical Assistant System** for **Diabetic Retinopathy** queries. You can use it as a blueprint for development and as a reference for future maintenance and testing.
+
+### **Testing Plan for the RAG-based Diabetic Retinopathy Query System**
+
+The testing plan for the **RAG-based Diabetic Retinopathy Query System** should focus on **validation**, **reliability**, and **accuracy**. Given that the system is built to answer clinical questions related to diabetic retinopathy using **specialized LLMs** and **medical embeddings**, testing will need to ensure that both the **knowledge retrieval** and the **generated responses** meet high standards of medical accuracy and relevance.
+
+Below is a **comprehensive testing plan** based on the **batch of queries** previously defined, as well as the architecture of the system. This testing will focus on **unit tests**, **integration tests**, **regression tests**, **performance tests**, and **user acceptance tests**.
+
+---
+
+## **1. Test Plan Overview**
+
+The primary objective of the testing plan is to evaluate the system's performance against different severity levels of **Diabetic Retinopathy (DR)** using **batch queries** and ensure that the system generates **medically accurate** and **relevant responses**. The testing will focus on:
+
+* **Response Validation**: Ensure the system provides medically accurate and contextually relevant answers.
+* **Performance**: Measure the system’s speed and responsiveness under load.
+* **Scalability**: Ensure that the system can handle multiple concurrent queries.
+* **Error Handling**: Verify that the system handles edge cases (e.g., invalid inputs) gracefully.
+
+---
+
+## **2. Test Categories and Types**
+
+### **2.1. Unit Testing**
+
+#### **Objective**:
+
+Unit tests will focus on individual components of the system to ensure that each part works correctly in isolation.
+
+**Components to Test**:
+
+* **Query Preprocessing**: Ensure that queries are correctly tokenized and preprocessed before being passed to the embedding model.
+* **Embedding Model (Nomic-Embed-Text)**: Test the embedding generation process. Verify that the embeddings are generated correctly and are relevant for the queries.
+* **Vector Store Operations**: Ensure that the vector store correctly indexes and retrieves the document chunks based on similarity.
+* **LLM Inference**: Test that the LLM (BioMistral, TinyLlama) can generate coherent, medically accurate responses.
+
+**Unit Test Examples**:
+
+* Test the accuracy of embedding generation for a sample batch of queries.
+* Verify that the system returns the correct number of relevant document chunks from the vector store.
+* Test the ability of the LLM to answer specific, predefined queries correctly.
+
+### **2.2. Integration Testing**
+
+#### **Objective**:
+
+Integration tests ensure that different system components interact properly when they are combined, including the data flow from the query input to the final response.
+
+**Components to Test**:
+
+* **Query → Embedding → Vector Retrieval → LLM Generation**: Ensure that a query correctly flows through the system and produces a relevant, medically accurate response.
+* **Embedding and LLM Pairing**: Test the combination of the embedding model and LLM to verify that the response generation process works as expected.
+
+**Integration Test Examples**:
+
+* A query about **Moderate NPDR** should trigger the retrieval of the relevant guidelines or treatment options from the vector store and result in an accurate response.
+* A query like "What should I do if I have Proliferative Diabetic Retinopathy?" should test the entire process from input, embedding, retrieval, to response generation.
+
+### **2.3. Regression Testing**
+
+#### **Objective**:
+
+Regression testing will ensure that changes made to the system (e.g., code updates, model updates) do not inadvertently break previously working features.
+
+**Tests to Include**:
+
+* **Backwards Compatibility**: Ensure that older queries still produce accurate responses after system updates.
+* **Model Updates**: When models (embedding or LLM) are updated, ensure that the system’s output remains consistent in terms of medical accuracy and performance.
+
+**Regression Test Examples**:
+
+* Test a set of **previously validated queries** to ensure that they still yield accurate responses.
+* When updating the **BioMistral** or **TinyLlama** models, verify that responses are still medically accurate and consistent with clinical guidelines.
+
+### **2.4. Performance Testing**
+
+#### **Objective**:
+
+Performance testing evaluates the system's responsiveness and ability to handle multiple queries under load.
+
+**Key Performance Indicators (KPIs)**:
+
+* **Response Time**: The system should return an answer within 2-3 seconds for most queries. More complex queries should take no more than 5 seconds.
+* **Concurrency**: The system should be able to handle **up to 500 concurrent queries** without significant performance degradation.
+* **System Load**: Test the system’s ability to scale with increasing query loads.
+
+**Performance Test Examples**:
+
+* **Load Testing**: Simulate 500 concurrent users querying the system to verify that it can handle the load without crashing or experiencing high latency.
+* **Stress Testing**: Gradually increase the number of queries sent to the system to test its breaking point.
+* **Response Time Testing**: Measure the time taken by the system to process the batch queries and return responses.
+
+### **2.5. User Acceptance Testing (UAT)**
+
+#### **Objective**:
+
+User acceptance testing is conducted by real users (e.g., doctors or medical professionals) to ensure that the system meets the needs of its intended audience.
+
+**Test Scenarios**:
+
+* **Clinical Relevance**: Medical professionals will review a subset of the system’s responses for accuracy, clinical relevance, and clarity.
+* **Interface Usability**: The user interface (if applicable) should be intuitive and easy for medical professionals to navigate, even with minimal training.
+
+**UAT Examples**:
+
+* Medical professionals will be asked to interact with the system using a set of **real-world clinical questions**, similar to the ones in the batch test, and provide feedback on the accuracy of the answers.
+* The users will validate that the system provides **relevant** and **evidence-based** medical responses for each query.
+
+---
+
+## **3. Testing Batch Questions**
+
+As per the batch of questions provided in the earlier steps, the following batch will be tested:
+
+| **Query**                                                                                                                               | **Expected Outcome**                                                                                                                           | **Testing Method**                |
+| :-------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------- |
+| "I have just been diagnosed with Type 2 diabetes and my eyes show no apparent retinopathy. When should I schedule my initial eye exam?" | The response should suggest the appropriate time for an initial eye exam, which is typically **at the time of diagnosis** for Type 2 diabetes. | Integration Test, UAT             |
+| "I have been diagnosed with Mild NPDR. How often should I be monitored for progression?"                                                | The system should respond that monitoring is typically **annual**.                                                                             | Unit Test, Integration Test       |
+| "What are the primary treatment options for someone diagnosed with PDR?"                                                                | The system should mention **Panretinal Photocoagulation (PRP)** and **anti-VEGF therapy**.                                                     | Integration Test, Regression Test |
+| "I have moderate NPDR with center-involved diabetic macular edema (CI-DME). Should treatment be initiated immediately?"                 | The system should suggest **deferring treatment** until visual acuity worsens below 20/25.                                                     | Unit Test, UAT                    |
+| "Should I be concerned about my eye health while starting GLP-1 RA medications if I currently have no retinopathy?"                     | The system should explain that **rapid glycemic control** may trigger accelerated retinopathy and should be monitored carefully.               | Integration Test, UAT             |
+
+Each query will be tested to ensure the system retrieves **highly relevant documents** from the vector store and generates **medically accurate responses** using the LLM.
+
+---
+
+## **4. Test Execution Plan**
+
+### **4.1. Execution Strategy**
+
+* **Test Environment Setup**:
+
+  * Deploy the system to the test environment, ensuring that all dependencies (e.g., BioMistral, Nomic-Embed-Text) are correctly installed.
+  * Ensure the **vector store** and **embedding models** are properly loaded with the diabetic retinopathy corpus.
+
+* **Test Execution**:
+
+  * Execute **unit tests** to check the individual components.
+  * Run **integration tests** to validate end-to-end query processing.
+  * Perform **regression testing** to ensure that updates do not break previous functionality.
+  * Conduct **performance tests** to evaluate the scalability and responsiveness of the system.
+  * Administer **user acceptance testing** with medical professionals.
+
+### **4.2. Tools for Testing**
+
+* **Unit Testing Framework**: Use **PyTest** for Python-based unit and integration testing.
+* **Load Testing Tool**: Use **Apache JMeter** or **Locust** for simulating concurrent queries and measuring system performance.
+* **Logging**: Ensure all test results are logged for debugging and performance analysis.
+* **CI/CD Pipeline**: Integrate automated tests into a **CI/CD pipeline** (e.g., using **GitHub Actions**, **Jenkins**) to automate testing and deployment.
+
+---
+
+## **5. Reporting and Continuous Improvement**
+
+* **Test Results Reporting**: Document the results of each test phase, including successful tests, failures, and any issues encountered during execution.
+* **Issue Tracking**: Use a tool like **Jira** to track and resolve any issues discovered during testing.
+* **Continuous Improvement**: Based on the testing results, continuously improve the system, refine models, and enhance response accuracy and performance.
+
+---
+
+This **Testing Plan** ensures that the **RAG-based Diabetic Retinopathy Query System** performs at the highest standards of medical accuracy, reliability, and scalability, and meets the needs of healthcare professionals in real-world environments.

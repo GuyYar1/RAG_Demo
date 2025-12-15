@@ -12,26 +12,18 @@ class SimpleVectorStore:
         self.metadatas = []
         self._load()
 
-    def add(self, documents, embeddings, ids, metadatas=None):
+    def add(self, documents, embeddings, ids, metadatas, weights=None):
         """
-        Add documents and their embeddings to the store.
+        Adds documents to the vector store with optional weights.
+        `weights` is a list of weight values corresponding to each document.
         """
-        # Ensure embeddings is a numpy array for easier handling
-        if not isinstance(embeddings, np.ndarray):
-            embeddings = np.array(embeddings)
-            
-        self.documents.extend(documents)
-        if len(self.embeddings) == 0:
-            self.embeddings = embeddings
-        else:
-            self.embeddings = np.vstack([self.embeddings, embeddings])
-            
-        self.ids.extend(ids)
-        if metadatas:
-            self.metadatas.extend(metadatas)
-        else:
-            self.metadatas.extend([{} for _ in range(len(documents))])
-            
+        for i, doc in enumerate(documents):
+            weight = weights[i] if weights else 1  # Default weight is 1
+            self.documents.append(doc)
+            self.embeddings.append(embeddings[i] * weight)  # Apply weight to embeddings
+            self.ids.append(ids[i])
+            self.metadatas.append(metadatas[i])
+
         self._save()
         print(f"SimpleVectorStore: Added {len(documents)} items. Total: {len(self.documents)}")
 
@@ -43,28 +35,38 @@ class SimpleVectorStore:
             return {"documents": [], "ids": [], "metadatas": [], "distances": []}
 
         # Calculate cosine similarity
-        # query_embeddings shape: (n_queries, dim)
-        # self.embeddings shape: (n_docs, dim)
-        similarities = cosine_similarity(query_embeddings, self.embeddings) 
+        similarities = cosine_similarity(query_embeddings, self.embeddings)
         
         results = {
             "documents": [],
             "ids": [],
             "metadatas": [],
-            "distances": [] # We return distances for compatibility (1 - similarity)
+            "distances": []  # We return distances for compatibility (1 - similarity)
         }
 
         for i in range(len(query_embeddings)):
             # Get top k indices
-            # argsort returns typically ascending, so we take last n and reverse
             top_k_indices = np.argsort(similarities[i])[-n_results:][::-1]
             
-            results["documents"].append([self.documents[idx] for idx in top_k_indices])
-            results["ids"].append([self.ids[idx] for idx in top_k_indices])
-            results["metadatas"].append([self.metadatas[idx] for idx in top_k_indices])
-            results["distances"].append([1 - similarities[i][idx] for idx in top_k_indices])
+            weighted_documents = []
+            weighted_scores = []
+            weighted_metadatas = []
             
-        return results
+            for idx in top_k_indices:
+                weight = 1  # Default weight is 1
+                if self.metadatas[idx].get('source') == 'offline':  # Give offline documents higher weight
+                    weight = 2  # You can adjust this value as needed
+                
+                weighted_documents.append(self.documents[idx])
+                weighted_scores.append(similarities[i][idx] * weight)
+                weighted_metadatas.append(self.metadatas[idx])
+            
+            results["documents"].append(weighted_documents)
+            results["ids"].append([self.ids[idx] for idx in top_k_indices])
+            results["metadatas"].append(weighted_metadatas)
+            results["distances"].append([1 - score for score in weighted_scores])  # Convert similarity to distance
+
+        return results  # This line must be **outside** the `for` loop
 
     def _save(self):
         with open(self.storage_path, 'wb') as f:

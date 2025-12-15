@@ -20,3 +20,6 @@ RAG_DEMO/flask_app.log
 RAG_DEMO/flask_session/
 RAG_DEMO/flask_app.log
 RAG_DEMO/scraped_data/
+__pycache__/
+*.pyc
+
