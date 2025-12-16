@@ -31,8 +31,8 @@ logger.addHandler(ch)
 # vector_store = SimpleVectorStore()
 EMBEDDING_MODEL = "nomic-embed-text"
 
-# Option to skip scraping
-skip_scraping = False  # Set this to True if you want to skip scraping and only use offline files
+# Skip scraping by default (offline files are always safe regardless of this setting)
+skip_scraping = True  # False = download new scraped data | True = use existing files only
 
 # Function to scrape and save text from URLs with a distinct prefix
 def scrape_and_save_text(url, output_dir, filename, prefix='scraped_'):
@@ -85,7 +85,7 @@ def scrape_and_save_Corpus():
     if not skip_scraping:
         for idx, url in enumerate(urls): 
             filename = f"article_{idx}.txt"
-            scrape_and_save_text(url, output_directory, filename, prefix='new_scraped_')
+            scrape_and_save_text(url, output_directory, filename, prefix='scraped_')
     else:
         print("Skipping scraping, using existing files")
         
@@ -94,7 +94,7 @@ def scrape_and_save_Corpus():
         logger.info("Starting to scrape new data...")
         for idx, url in enumerate(urls): 
             filename = f"article_{idx}.txt"
-            scrape_and_save_text(url, output_directory, filename, prefix='new_scraped_')
+            scrape_and_save_text(url, output_directory, filename, prefix='scraped_')
     else:
         logger.info("Skipping scraping, using existing files.")
 
@@ -107,11 +107,10 @@ def concat_corpus(directory):
 
     if not os.path.exists(directory):
         os.makedirs(directory, exist_ok=True)
-
-    # Concatenate all offline files first (no prefix)
+# Concatenate all offline files first (no prefix)
     logger.info("Loading offline files...")
     for filename in os.listdir(directory):
-        if filename.endswith('.txt') and not filename.startswith(('scraped_', 'new_scraped_')):  # Skip files with 'scraped_' or 'new_scraped_'
+        if filename.endswith('.txt') and not filename.startswith('scraped_'):  # Skip files with 'scraped_' prefix
             filepath = os.path.join(directory, filename)
             with open(filepath, 'r', encoding='utf-8') as file:
                 file_content = file.read()
@@ -119,10 +118,10 @@ def concat_corpus(directory):
                 source_list.append('offline')  # Mark as offline
                 offline_count += 1
     
-    # Concatenate scraped files (those starting with 'scraped_' or 'new_scraped_')
+    # Concatenate scraped files (those starting with 'scraped_')
     logger.info("Loading scraped files...")
     for filename in os.listdir(directory):
-        if filename.endswith('.txt') and (filename.startswith('scraped_') or filename.startswith('new_scraped_')):  # Only read scraped files
+        if filename.endswith('.txt') and filename.startswith('scraped_'):  # Only read scraped files
             filepath = os.path.join(directory, filename)
             with open(filepath, 'r', encoding='utf-8') as file:
                 file_content = file.read()
@@ -203,20 +202,33 @@ def generate_embeddings_ollama(texts):
 def preprocess_documents(vector_store, skip_scraping=False):
     logger.info("Preprocessing documents...")
 
-    # 0. Cleanup old scraped data if needed
+    # 0. Ensure directory exists
     output_directory = './scraped_data'
-    if not skip_scraping and os.path.exists(output_directory):
-        logger.info("Cleaning up old scraped data...")
-        shutil.rmtree(output_directory)  # Clean up only if scraping
     os.makedirs(output_directory, exist_ok=True)
+    
+    # 1. Clean up ONLY old scraped files before re-scraping (offline files are always preserved)
+    if not skip_scraping and os.path.exists(output_directory):
+        logger.info("Cleaning up old scraped files only (preserving offline files)...")
+        deleted_count = 0
+        for filename in os.listdir(output_directory):
+            # Only delete files that start with 'scraped_'
+            if filename.startswith('scraped_') and filename.endswith('.txt'):
+                filepath = os.path.join(output_directory, filename)
+                try:
+                    os.remove(filepath)
+                    deleted_count += 1
+                    logger.debug(f"Deleted: {filename}")
+                except Exception as e:
+                    logger.error(f"Failed to delete {filename}: {e}")
+        logger.info(f"Deleted {deleted_count} old scraped files")
 
-    # 1. Scrape data if not skipping
+    # 2. Scrape data if not skipping
     if not skip_scraping:
         logger.info("Scraping new data...")
         scrape_and_save_Corpus()
     else:
         logger.info("Skipping scraping and using existing data...")
-
+    
    # 2. Load and clean data
     logger.info("Loading and cleaning data...")
     documents_df = create_corpus_doc()

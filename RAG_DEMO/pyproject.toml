@@ -1,16 +1,16 @@
 [tool.poetry]
 name = "rag-demo"
 version = "0.1.0"
-description = ""
+description = "A demonstration of RAG models."
 authors = ["GuyYar1 <132554415+GuyYar1@users.noreply.github.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
 nltk = "^3.9.1"
 gensim = "^4.3.3"
-flask = "^3.0.3"
-flask-session = "^0.8.0"
+flask = "^3.1.2"
 transformers = "^4.44.2"
 torch = "^2.4.1"
 scikit-learn = "^1.5.1"
@@ -19,7 +19,6 @@ pandas = "^2.2.2"
 gunicorn = "^23.0.0"
 requests = "^2.32.3"
 beautifulsoup4 = "^4.12.3"
-
 
 [build-system]
 requires = ["poetry-core"]
