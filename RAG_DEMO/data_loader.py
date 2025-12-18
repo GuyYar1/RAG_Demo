@@ -19,13 +19,14 @@ ch = logging.StreamHandler()  # Logs to the console
 ch.setLevel(logging.DEBUG)  # Set the logging level for the handler
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(message)s')  # Log format
 ch.setFormatter(formatter)
-logger.addHandler(ch)
+logger.addHandler(ch) 
 
 # Optional: Also log to a file (uncomment if needed)
 # fh = logging.FileHandler('data_loader.log')
 # fh.setLevel(logging.DEBUG)  # Set to DEBUG for file logging
 # fh.setFormatter(formatter)
 # logger.addHandler(fh)
+#
 
 # Initialize Simple Vector Store, already  initit in the app..py
 # vector_store = SimpleVectorStore()
