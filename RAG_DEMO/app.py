@@ -129,14 +129,75 @@ def chat():
     
     user_profile = new_profile
     logger.info(f"Final user profile: {user_profile}")
+
     
     try:
         # Convert query to embedding (using Ollama via model_service)
         query_embedding = get_query_embedding(user_message)
+        logger.info(f"DEBUG 1: Embedding generated: {len(query_embedding) if hasattr(query_embedding, '__len__') else 'NO_LEN'} dims")
+
+        # =====================================================
+        # BACKEND DR RELEVANCE FILTER (FULL DEBUG)
+        # =====================================================
+        logger.info("DEBUG 2: Starting DR relevance check...")
+        test_results = vector_store.query([query_embedding], n_results=3)
+        logger.info(f"DEBUG 3: test_results keys: {list(test_results.keys())}")
+        logger.info(f"DEBUG 4: test_results['documents'][0] length: {len(test_results.get('documents', [[]])[0])}")
+        
+        # SAFE score extraction - LOG EVERY STEP
+        test_scores_raw = None
+        if 'scores' in test_results:
+            test_scores_raw = test_results['scores'][0][:3]
+            logger.info(f"DEBUG 5A: Found SCORES: {test_scores_raw}")
+        elif 'distances' in test_results:
+            test_distances = test_results['distances'][0][:3]
+            test_scores_raw = [1.0 / (1.0 + float(d)) for d in test_distances]
+            logger.info(f"DEBUG 5B: Found DISTANCES: {test_distances} → converted: {test_scores_raw}")
+        else:
+            test_scores_raw = [0.0, 0.0, 0.0]
+            logger.info("DEBUG 5C: NO scores/distances → using [0.0,0.0,0.0]")
+        
+        # Ensure numeric + pad to 3 - LOG EACH
+        test_scores = []
+        for i, score in enumerate(test_scores_raw):
+            try:
+                numeric_score = float(score)
+                test_scores.append(numeric_score)
+                logger.info(f"DEBUG 6{i}: Raw {score} → float {numeric_score}")
+            except Exception as e:
+                test_scores.append(0.0)
+                logger.info(f"DEBUG 6{i}: FAILED {score} → 0.0 (error: {e})")
+        
+        while len(test_scores) < 3:
+            test_scores.append(0.0)
+            logger.info(f"DEBUG 7: Padded to 3 scores: {test_scores}")
+        
+        logger.info(f"DEBUG 8: FINAL test_scores: {test_scores}")
+
+                # ULTRA STRICT FILTER: ALL top-3 < 0.65 AND avg < 0.60 (blocks random strings)
+        all_low = all(s < 0.65 for s in test_scores)
+        avg_score = sum(test_scores) / 3
+        too_generic = avg_score < 0.60
+        
+        logger.info(f"DEBUG 9B: all<0.65={all_low}, avg={avg_score:.3f}")
+
+
+        logger.info(f"DEBUG 9: all<0.55={all_low}, avg={avg_score:.3f} → {'FILTERED' if (all_low and too_generic) else 'PROCEED'}")
+
+        if all_low and too_generic:
+            logger.info("🚫 RAG irrelevant: BLOCKED generic query")
+            return jsonify({
+                'response': '🤖 **Rephrase as diabetic retinopathy question**\n\nExamples:\n• "NPDR level 3 treatment?"\n• "PDR anti-VEGF protocol?"\n• "Severe DR urgent steps?"',
+                'profile': getattr(user_profile, 'to_dict', lambda: {} )()
+            })
+        
+        logger.info("✅ RAG relevant: CONTINUING...")
+
 
       # Retrieval from SimpleVectorStore - adjust count based on severity
         n_results = 25 if is_severe_condition(user_profile) else 15
         results = vector_store.query([query_embedding], n_results=n_results)
+
 
         # Assign weights to the retrieved documents
         retrieved_docs = results['documents'][0]
@@ -153,7 +214,11 @@ def chat():
             logger.warning("No scores or distances found, using uniform scores")
         
         retrieved_metadatas = results['metadatas'][0]
+        logger.info(f"DEBUG 10: retrieved_docs length: {len(retrieved_docs)}")
+        logger.info(f"DEBUG 11: retrieved_scores length: {len(retrieved_scores)}")
+        logger.info(f"DEBUG 12: retrieved_metadatas length: {len(retrieved_metadatas)}")
 
+        
   # Boost the score for offline documents and severity-relevant docs
         weighted_docs = []
         for i, doc in enumerate(retrieved_docs):
@@ -268,9 +333,55 @@ def get_history():
     return jsonify({'history': session['conversation']})
 
 @app.route('/')
-def hello():
-    logger.info("App is running")
-    return "Hello, World!"
+def home():
+    logger.info("DR Assistance UI loaded")
+    return '''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DR Assistance for Doctor (Groq v1.0.0)</title>
+    <style>body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+    input, textarea { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+    button { background: #007bff; color: white; padding: 12px 24px; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; }
+    button:hover { background: #0056b3; }
+    #response { background: #f8f9fa; padding: 20px; border-left: 4px solid #007bff; margin-top: 20px; min-height: 100px; border-radius: 5px; }
+    .char-count { font-size: 12px; color: #666; }</style>
+</head>
+<body>
+    <h1>🚑 DR Assistance for Doctor (Groq v1.0.0)</h1>
+    <p><strong>Ask about diabetic retinopathy (max 150 chars):</strong></p>
+    <input type="text" id="query" placeholder="e.g. I have severe NPDR level 3/4, what should I do?" maxlength="150">
+    <div class="char-count" id="char-count">0/150 chars</div><br>
+    <button onclick="askBot()">💬 Ask Doctor Assistant</button>
+    <div id="response">Ask a question to get started... (RAG + Groq)</div>
+
+    <script>
+        document.getElementById('query').addEventListener('input', function() {
+            document.getElementById('char-count').textContent = this.value.length + '/150 chars';
+        });
+        async function askBot() {
+            const query = document.getElementById('query').value.trim();
+            if (!query) return alert('Please enter a question');
+            document.getElementById('response').innerHTML = '🤔 Thinking...';
+            document.getElementById('query').disabled = true;
+            try {
+                const res = await fetch('/chat', {method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: query})});
+                const data = await res.json();
+                document.getElementById('response').innerHTML = `<strong>✅ Answer:</strong><br><pre>${data.response}</pre>`;
+            } catch(e) {
+                document.getElementById('response').innerHTML = '❌ Error: ' + e.message;
+            }
+            document.getElementById('query').disabled = false;
+            document.getElementById('query').focus();
+        }
+        document.getElementById('query').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') askBot();
+        });
+    </script>
+</body>
+</html>'''
+
 
 @app.route('/feedback', methods=['POST'])
 def collect_feedback():
