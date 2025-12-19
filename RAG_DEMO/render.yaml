@@ -2,9 +2,9 @@ yamlservices:
   - type: web
     name: dr-medical-assistant
     runtime: python
-    pythonVersion: "3.11"  # Added Python version here
+    pythonVersion: "3.11"  # Ensures correct Python version
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120 --workers 1  # Workers added
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120 --workers 1  # Explicit workers specified
     envVars:
       - key: GROQ_API_KEY
         sync: false
@@ -21,4 +21,4 @@ services:
     disk:
       name: vector-store-disk
       mountPath: /opt/render/project/src
-      sizeGB: 1
+      sizeGB: 1  # Keep disk configuration if required for file persistence
