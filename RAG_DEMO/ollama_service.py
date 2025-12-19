@@ -1,5 +1,6 @@
-import ollama
 import logging
+import os
+from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -20,12 +21,21 @@ Hospital eye services should monitor disease progression every 3-6 months for se
 
 P4 - GENERAL CARE (Secondary - subordinate to ophthalmic care):
 See endocrinologist for HbA1c management and systemic diabetes control
-"""
+""" 
+
 def validate_severe_response(response: str, query: str, profile) -> dict:
     """
     Validate if response for severe queries contains required urgent information.
     Returns: {'valid': bool, 'missing': list of missing elements}
     """
+
+    if not response:
+        logger.warning(f"Validation failed: No response provided for query: {query}")
+        return {'valid': False, 'missing': ['response']}
+
+    response_lower = response.lower()
+    query_lower = query.lower()
+ 
     from profile_extractor import is_severe_condition
     
     query_lower = query.lower()
@@ -59,9 +69,14 @@ def generate_response_with_validation(context: str, query: str, profile, model: 
     Generate response with validation and re-prompting if urgent info is missing.
     """
     for attempt in range(max_retries):
+        logger.info(f"Attempt {attempt + 1}: Generating response...")
         response = generate_response(context, query, profile, model)
         
         # Validate response
+        if response is None:
+            logger.warning(" Response is None. Skipping validation.")
+            return "I apologize, but I encountered an error generating the response. Please try again later."
+
         validation = validate_severe_response(response, query, profile)
         
         if validation['valid']:
@@ -107,14 +122,14 @@ def generate_response(context: str, query: str, profile, model: str = "mistral")
         profile_context += f"Diagnosed condition: {profile.condition}\n"
     
     if is_severe:
-        # STRICT prompt for severe cases - enforces P1→P5 clinical hierarchy
+        # STRICT prompt for severe cases - enforces P1-P5 clinical hierarchy
         prompt = f"""
 You are a medical assistant. The doctor is asking about a SEVERE/URGENT condition for a specific patient.
 
 PATIENT PROFILE:
 {profile_context}
 
-MANDATORY CLINICAL HIERARCHY - YOU MUST FOLLOW THIS P1→P5 STRUCTURE EXACTLY:
+MANDATORY CLINICAL HIERARCHY - YOU MUST FOLLOW THIS P1-P5 STRUCTURE EXACTLY:
 
 **P1 - DIAGNOSIS & RISK** (State the condition and its progression risk FIRST):
 For Level 3/4 severity: "This is Severe Nonproliferative Diabetic Retinopathy (Severe NPDR) with nearly 50% risk of progressing to Proliferative Diabetic Retinopathy (PDR) within 1 year"
@@ -172,7 +187,7 @@ Medical Context:
 
 Question: {query}
 
-Answer (FOLLOW P1→P2→P3→P4→P5 HIERARCHY - START WITH DIAGNOSIS):
+Answer (FOLLOW P1-P2-P3-P4-P5 HIERARCHY - START WITH DIAGNOSIS):
 """
     else:
         # Standard prompt for non-severe queries with profile awareness
@@ -204,40 +219,85 @@ Medical Context:
 Question: 
 {query}
 
-Answer (prioritize urgent actions first, then tailor advice to patient profile):"""
+Answer (prioritize urgent actions first, then tailor advice to patient profile):
+"""
 
-    # Helper to call the Ollama API
-    def call_ollama(model_name):
-        try:
-            logger.info(f"Calling Ollama with model: {model_name}")
-            logger.info(f"Prompt length: {len(prompt)} characters")
-            logger.info(f"Profile: {profile}")
-            response = ollama.chat(
-                model=model_name, 
-                messages=[{'role': 'user', 'content': prompt}],
-                options={
-                    'num_predict': 600,    # Shorter for focused clinical facts
-                    'temperature': 0.1,    # Very focused (less creativity)
-                    'top_p': 0.8
-                }
-            )
-            result = response['message']['content']
-            logger.info(f"Successfully generated response with {model_name} ({len(result)} chars)")
-            return result
-        except Exception as e:
-            logger.error(f"Error calling Ollama with '{model_name}': {e}")
+    logger.info("ENTER generate_response core")
+    logger.info(f"is_severe={is_severe}, model={model}")
+    result = call_groq_api(model, prompt, profile)
+    logger.info(f"Result from call_groq_api is None? {result is None}")
+    return result
+
+   
+
+# Helper to call the groq Inference API
+def call_groq_api(model_name, prompt, profile):
+    try:
+        logger.info(f"Calling Groq API with model: {model_name}")
+        logger.info(f"Prompt length: {len(prompt)} characters")
+        logger.info(f"Profile: {profile}")
+        
+        # Get Groq API key from environment
+        groq_api_key = os.getenv("GROQ_API_KEY")
+        if not groq_api_key:
+            logger.error("GROQ_API_KEY not set!")
             return None
+        
+        # Initialize Groq client
+        client = OpenAI(
+            api_key=groq_api_key,
+            base_url="https://api.groq.com/openai/v1"
+        )
+        
+        # Map model names to Groq models
+        groq_model_map = {
+            #"mistral": "mixtral-8x7b-32768",  # Fast Mixtral but groq has been decommissioned it and is no longer supported
+            # Main fast general model
 
-    # Try using the main model first
+            "mistral": "llama-3.3-70b-versatile",   # main high-quality model
+            "tinyllama": "llama-3.1-8b-instant",    # cheaper/faster fallback
+            "biomistral": "llama-3.3-70b-versatile",
+            #"biomistral": "mixtral-8x7b-32768"            
+        }
+        
+        groq_model = groq_model_map.get(model_name, groq_model_map["biomistral"])
+        
+        # Call Groq API
+        response = client.chat.completions.create(
+            model=groq_model,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=600,
+            temperature=0.1,
+            top_p=0.8
+        )
+        
+        result = response.choices[0].message.content
+        logger.info(f"Successfully generated response with {groq_model} ({len(result)} chars)")
+        return result
+        
+    except Exception as e:
+        import traceback
+        logger.error("### GROQ ERROR ###")
+        logger.error(e)
+        logger.error(traceback.format_exc())
+        logger.error(f"Error calling Groq API with '{model_name}': {e}")
+        logger.error(traceback.format_exc())
+        return None
+
+# Try using the main model first
+def generate_response_with_retry(context, query, profile, model="mistral"):
     logger.info(f"Primary model attempt: {model}")
-    response = call_ollama(model)
+    response = call_groq_api(model, context, profile)
+    if response is None:
+        logger.warning(f"Response from {model} is None. Retrying with fallback model.")
     if response:
         return response
     
     # Fallback to tinyllama if the primary model fails
-    if model != "tinyllama":
-        logger.warning("⚠️ Primary model failed. Attempting fallback to 'tinyllama'...")
-        response = call_ollama("tinyllama")
+    if model == "mistral" and response is None:
+        logger.warning("model (mistral) failed. Attempting fallback to 'tinyllama'...")
+        
+        response = call_groq_api("tinyllama", context, profile)
         if response:
             logger.info("✓ Fallback to tinyllama successful")
             return response
@@ -246,3 +306,5 @@ Answer (prioritize urgent actions first, then tailor advice to patient profile):
 
     # If all attempts fail, return a helpful error message
     return "I apologize, but I encountered an error generating the response. Please try again later."
+
+

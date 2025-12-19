@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import os
 import re
 from collections import OrderedDict
-import ollama
 import numpy as np
 import shutil
 import sys
@@ -176,29 +175,48 @@ def chunk_text(text, chunk_size=1800, overlap=200):
     return chunks
 
 
-# Function to generate embeddings using Ollama
-def generate_embeddings_ollama(texts):
+# Function to generate embeddings using sentence-transformers
+def generate_embeddings_batch(texts):
+    """Generate embeddings in batch for efficiency"""
+    from model_service import get_embedding_model
+    
     embeddings = []
     logger.info(f"Generating embeddings for {len(texts)} chunks...")
-    for i, text in enumerate(texts):
-        if not text or not text.strip():
-            logger.warning(f"Skipping empty chunk {i}")
-            embeddings.append([0.0]*768)
-            continue
-            
-        try:
-            logger.debug(f"Processing chunk {i+1}/{len(texts)}...", end="\r", flush=True)
-            
-            resp = ollama.embeddings(model=EMBEDDING_MODEL, prompt=text)
-            embeddings.append(resp["embedding"])
-            time.sleep(0.01)  # Small delay to be polite to local API
-            
-        except Exception as e:
-            logger.error(f"Error embedding chunk {i}: {e}")
-            embeddings.append([0.0]*768)  # Fallback zero vector
     
-    logger.info("Embedding generation complete.")
-    return embeddings
+    # Filter empty texts
+    valid_texts = []
+    valid_indices = []
+    for i, text in enumerate(texts):
+        if text and text.strip():
+            valid_texts.append(text)
+            valid_indices.append(i)
+        else:
+            logger.warning(f"Skipping empty chunk {i}")
+    
+    if not valid_texts:
+        logger.error("No valid texts to embed")
+        return [[0.0]*384 for _ in texts]
+    
+    try:
+        model = get_embedding_model()
+        # Batch encode for speed
+        valid_embeddings = model.encode(valid_texts, batch_size=32, show_progress_bar=True, convert_to_numpy=True)
+        
+        # Insert embeddings at correct positions
+        embedding_idx = 0
+        for i in range(len(texts)):
+            if i in valid_indices:
+                embeddings.append(valid_embeddings[embedding_idx].tolist())
+                embedding_idx += 1
+            else:
+                embeddings.append([0.0]*384)  # Fallback for empty chunks
+        
+        logger.info("Embedding generation complete.")
+        return embeddings
+        
+    except Exception as e:
+        logger.error(f"Error generating embeddings: {e}")
+        return [[0.0]*384 for _ in texts]  # Fallback zero vectors
 
 def preprocess_documents(vector_store, skip_scraping=False):
     logger.info("Preprocessing documents...")
@@ -264,8 +282,8 @@ def preprocess_documents(vector_store, skip_scraping=False):
     logger.info(f"Created {len(all_chunks)} chunks from {len(raw_docs)} documents.")
 
     # 4. Generate Embeddings via Ollama
-    logger.info(f"Generating embeddings for {len(all_chunks)} chunks using {EMBEDDING_MODEL}...")
-    embeddings = generate_embeddings_ollama(all_chunks)
+    logger.info(f"Generating embeddings for {len(all_chunks)} chunks using sentence-transformers...")
+    embeddings = generate_embeddings_batch(all_chunks)
 
     # 5. Store in SimpleVectorStore (using the existing vector_store)
     logger.info("Resetting vector store...")
