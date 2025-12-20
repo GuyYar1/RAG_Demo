@@ -32,7 +32,7 @@ regex==2024.7.24
 requests==2.32.3
 safetensors==0.4.5
 scikit-learn==1.5.1
-scipy==1.10.1
+scipy==1.13.1 --only-binary :all:
 sentence-transformers==2.2.2
 setuptools==74.1.2
 six==1.16.0
